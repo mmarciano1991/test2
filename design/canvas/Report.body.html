@@ -1,44 +1,56 @@
-<div class="phone">
-  <div class="screen pad-top">
-    <div class="screen__body gutter" style="padding-top:22px;padding-bottom:8px">
-      <div style="text-align:center">
-        <span class="badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.55 18L3.85 12.3L5.275 10.875L9.55 15.15L18.725 5.975L20.15 7.4L9.55 18Z"/></svg>
-          Batch of 8 done
-        </span>
-        <div style="font-family:var(--font-serif);font-size:30px;font-weight:600;color:var(--text-display);margin-top:14px">Goed bezig!</div>
-        <p class="muted" style="font-size:14px;margin:7px 0 0">A quick check-in — not a grade.</p>
-        <p style="font-size:13px;font-weight:700;color:var(--caution-solid);margin:9px 0 0">🔥 4-day streak — five minutes a day adds up.</p>
-      </div>
+<!-- @inline — every element carries its own style, so the properties panel can edit it -->
+<div style="width:390px;height:844px;background:#fbf8f1;display:flex;flex-direction:column;overflow:hidden;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:#1b2638;padding-top:54px">
 
-      <div style="display:flex;gap:12px;margin-top:22px">
-        <div class="stat-card"><div class="stat-card__value stat-card__value--success">6</div><div class="stat-card__label">Knew it</div></div>
-        <div class="stat-card"><div class="stat-card__value stat-card__value--error">2</div><div class="stat-card__label">To review</div></div>
-      </div>
+  <div style="flex:1;min-height:0;overflow:hidden;padding:22px 22px 8px">
 
-      <div style="display:flex;align-items:center;justify-content:space-between;margin:18px 2px 11px">
-        <span style="font-family:var(--font-serif);font-size:16px;font-weight:600;color:var(--text-display)">Words to review</span>
-        <span class="faint" style="font-size:12.5px">Coming back sooner</span>
+    <div style="text-align:center">
+      <span style="display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:#e7f0ea;color:#2e5e40;font-weight:700;font-size:12.5px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.55 18L3.85 12.3L5.275 10.875L9.55 15.15L18.725 5.975L20.15 7.4L9.55 18Z"/></svg>
+        Batch of 8 done
+      </span>
+      <div style="font-family:'Spectral',Georgia,serif;font-size:30px;font-weight:600;color:#0f2b54;margin-top:14px">Goed bezig!</div>
+      <p style="color:#34405a;font-size:14px;margin:7px 0 0">A quick check-in — not a grade.</p>
+      <p style="font-size:13px;font-weight:700;color:#c99a2e;margin:9px 0 0">🔥 4-day streak — five minutes a day adds up.</p>
+    </div>
+
+    <!-- outcome tiles -->
+    <div style="display:flex;gap:12px;margin-top:22px">
+      <div style="flex:1;background:#ffffff;border:1px solid #ede8db;border-radius:18px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:28px;line-height:1.1;color:#2e5e40">6</div>
+        <div style="font-weight:700;font-size:16px;color:#6b7689">Knew it</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:9px">
-        <div class="wordrow-compact">
-          <span class="chip chip--het chip--sm">het</span>
-          <span class="wordrow-compact__dutch">slot</span>
-          <span class="wordrow-compact__gloss">lock</span>
-          <span class="tricky-tag">Tricky</span>
-        </div>
-        <div class="wordrow-compact">
-          <span class="chip chip--de chip--sm">de</span>
-          <span class="wordrow-compact__dutch">huurder</span>
-          <span class="wordrow-compact__gloss">tenant</span>
-        </div>
+      <div style="flex:1;background:#ffffff;border:1px solid #ede8db;border-radius:18px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:28px;line-height:1.1;color:#9a3b22">2</div>
+        <div style="font-weight:700;font-size:16px;color:#6b7689">To review</div>
       </div>
     </div>
 
-    <div class="gutter" style="padding:12px 22px 32px;display:flex;flex-direction:column;gap:9px">
-      <button class="btn btn--primary">Continue to next 6</button>
-      <button class="btn btn--secondary">Review missed words</button>
-      <button class="link-btn" style="margin:5px auto 0;display:block">Back to dashboard</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin:18px 2px 11px">
+      <span style="font-family:'Spectral',Georgia,serif;font-size:16px;font-weight:600;color:#0f2b54">Words to review</span>
+      <span style="font-size:12.5px;color:#6b7689">Coming back sooner</span>
     </div>
+
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <div style="width:100%;background:#ffffff;border:1px solid #ede8db;border-radius:16px;padding:13px 16px;display:flex;align-items:center;gap:12px">
+        <span style="padding:4px 12px;border-radius:9px;font-weight:700;font-size:13px;background:#ffffff;color:#1b4079;box-shadow:inset 0 0 0 1.6px #1b4079">het</span>
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#0f2b54">slot</span>
+        <span style="font-size:14px;color:#6b7689">lock</span>
+        <span style="flex-shrink:0;padding:3px 8px;border-radius:999px;background:#fbf1dd;border:1px solid #e9d5a6;color:#8a6a1e;font-size:10.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase">Tricky</span>
+      </div>
+      <div style="width:100%;background:#ffffff;border:1px solid #ede8db;border-radius:16px;padding:13px 16px;display:flex;align-items:center;gap:12px">
+        <span style="padding:4px 12px;border-radius:9px;font-weight:700;font-size:13px;background:#1b4079;color:#ffffff">de</span>
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#0f2b54">huurder</span>
+        <span style="font-size:14px;color:#6b7689">tenant</span>
+      </div>
+    </div>
+
   </div>
+
+  <!-- footer adapts to what is actually left; leaving is always offered -->
+  <div style="padding:12px 22px 32px;display:flex;flex-direction:column;gap:9px">
+    <button style="width:100%;border:none;border-radius:16px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;line-height:1;padding:17px;display:flex;align-items:center;justify-content:center;gap:8px;background:#1b4079;color:#fbf8f1;box-shadow:0 8px 20px rgba(27,64,121,0.28)">Continue to next 6</button>
+    <button style="width:100%;border:1.5px solid #d7deea;border-radius:14px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;line-height:1;padding:13px;display:flex;align-items:center;justify-content:center;gap:8px;background:#ffffff;color:#1b4079">Review missed words</button>
+    <button style="background:none;border:none;color:#1b4079;font-weight:700;font-size:13px;padding:0;margin:5px auto 0;display:block">Back to dashboard</button>
+  </div>
+
 </div>

@@ -1,34 +1,49 @@
-<div class="phone">
-  <div class="screen pad-top">
-    <div class="topbar">
-      <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg></button>
-      <div class="progress"><div class="progress__fill" style="width:37.5%"></div></div>
-      <span style="font-size:13px;font-weight:700;color:var(--text-muted)">3/8</span>
+<!-- @inline — every element carries its own style, so the properties panel can edit it -->
+<div style="width:390px;height:844px;background:#fbf8f1;display:flex;flex-direction:column;overflow:hidden;font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;color:#1b2638;padding-top:54px">
+
+  <!-- topbar — close, progress, count. No title: the bar IS the header. -->
+  <div style="display:flex;align-items:center;gap:14px;padding:4px 20px">
+    <button style="width:38px;height:38px;flex-shrink:0;padding:0;border-radius:14px;border:1.5px solid #d7deea;background:#ffffff;color:#1b4079;display:flex;align-items:center;justify-content:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg>
+    </button>
+    <div style="flex:1;height:8px;background:#e4e9f2;border-radius:6px;overflow:hidden">
+      <div style="height:100%;width:37.5%;background:#1b4079;border-radius:6px"></div>
     </div>
+    <span style="font-size:13px;font-weight:700;color:#6b7689">3/8</span>
+  </div>
 
-    <div class="screen__body gutter" style="padding:14px 22px 4px;display:flex;flex-direction:column">
-      <div class="eyebrow" style="text-align:center">Do you know this word?</div>
+  <!-- card area -->
+  <div style="flex:1;min-height:0;display:flex;flex-direction:column;padding:14px 22px 4px">
 
-      <div class="flashcard">
-        <div class="flashcard__inner">
-          <div class="flashcard__face flashcard__face--front">
-            <span class="chip chip--de">de</span>
-            <div class="flashcard__word">hond</div>
-            <div class="divider-rule"></div>
-            <div class="flashcard__example">De hond rent door het park.</div>
-            <div class="divider-rule"></div>
-            <div class="flashcard__met-in">
-              <div class="flashcard__met-in-label">Where you met it</div>
-              <div class="flashcard__example">De hond loopt in de tuin.</div>
-            </div>
-            <div class="flashcard__hint">Tap to flip</div>
-          </div>
+    <div style="text-align:center;font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:0.12em;color:#6b7689">Do you know this word?</div>
+
+    <div style="flex:1;width:100%;padding:10px 0 6px;display:flex;align-items:center;justify-content:center">
+      <div style="width:100%;max-width:300px;min-height:360px;background:#ffffff;border:1px solid #e4e9f2;border-radius:24px;box-shadow:0 16px 40px rgba(15,43,84,0.13);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px;text-align:center">
+
+        <span style="padding:4px 12px;border-radius:9px;font-weight:700;font-size:14px;background:#1b4079;color:#ffffff">de</span>
+
+        <div style="font-family:'Spectral',Georgia,serif;font-size:28px;font-weight:600;color:#0f2b54;line-height:1.1">hond</div>
+
+        <div style="width:60px;height:1px;flex-shrink:0;background:#9db6d8"></div>
+
+        <div style="font-family:'Spectral',Georgia,serif;font-style:italic;font-size:16px;line-height:1.5;color:#34405a">De hond rent door het park.</div>
+
+        <div style="width:60px;height:1px;flex-shrink:0;background:#9db6d8"></div>
+
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#6b7689">Where you met it</div>
+          <div style="font-family:'Spectral',Georgia,serif;font-style:italic;font-size:16px;line-height:1.5;color:#34405a">De hond loopt in de tuin.</div>
         </div>
+
+        <div style="color:#6b7689;font-size:12px;font-weight:600;letter-spacing:0.04em">Tap to flip</div>
+
       </div>
     </div>
-
-    <div class="gutter" style="padding:12px 22px 32px;display:flex;gap:12px">
-      <button class="btn btn--primary">Show translation</button>
-    </div>
   </div>
+
+  <!-- grading is sequenced: reveal first -->
+  <div style="padding:12px 22px 32px;display:flex;gap:12px">
+    <button style="flex:1;border:none;border-radius:16px;font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:16px;line-height:1;padding:17px;display:flex;align-items:center;justify-content:center;gap:8px;background:#1b4079;color:#fbf8f1;box-shadow:0 8px 20px rgba(27,64,121,0.28)">Show translation</button>
+  </div>
+
 </div>
