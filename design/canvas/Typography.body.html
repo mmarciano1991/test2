@@ -1,0 +1,102 @@
+<style>
+  .fam{display:grid;grid-template-columns:150px 1fr;gap:26px;align-items:start;padding:20px 0;border-bottom:1px solid var(--line-divider);}
+  .fam__role{font-size:12px;font-weight:700;color:var(--text-body);}
+  .fam__meta{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--text-faint);line-height:1.7;margin-top:5px;}
+  .ramp{display:grid;grid-template-columns:176px 1fr;gap:24px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line-divider);}
+  .ramp__name{font-size:12px;font-weight:700;color:var(--text-body);}
+  .ramp__spec{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--text-faint);margin-top:4px;line-height:1.6;}
+  .wt{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Foundations</p>
+  <h1 class="sheet__title">Typography</h1>
+  <p class="sheet__lede">Two faces with a strict division of labour: <strong style="color:var(--text-body)">Spectral</strong> is reserved for Dutch — every word specimen, every example sentence, every screen title — and <strong style="color:var(--text-body)">Hanken Grotesk</strong> carries all UI chrome. The split is the point: a learner can tell at a glance which text is the language they're learning and which is the app talking. Sizes come from Figma as <span class="spec">--size-*</span> tokens; the families are hand-authored so fallback stacks survive.</p>
+
+  <div class="grp">
+    <div class="grp__name">The two families</div>
+    <div class="fam">
+      <div>
+        <div class="fam__role">Spectral</div>
+        <div class="fam__meta">--font-serif<br>400 · 500 · 600 · 700<br>+ italic 400 / 500<br>Georgia, Times, serif</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-serif);font-weight:600;font-size:40px;line-height:1.1;color:var(--text-display);letter-spacing:-.01em">Woordkast</div>
+        <div style="font-family:var(--font-serif);font-style:italic;font-size:19px;line-height:1.5;color:var(--ink-quote);margin-top:10px">Het slot van de deur is kapot.</div>
+        <div style="font-family:var(--font-serif);font-size:14px;color:var(--text-faint);margin-top:9px;letter-spacing:.01em">abcdefghijklmnopqrstuvwxyz &nbsp; ABCDEFGHIJKLM &nbsp; 0123456789 &nbsp; ij &nbsp; é ë ï</div>
+      </div>
+    </div>
+    <div class="fam" style="border-bottom:none">
+      <div>
+        <div class="fam__role">Hanken Grotesk</div>
+        <div class="fam__meta">--font-sans<br>400 · 500 · 600 · 700 · 800<br>system-ui, sans-serif</div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-sans);font-weight:700;font-size:34px;line-height:1.15;color:var(--text-body);letter-spacing:-.015em">Add to deck</div>
+        <div style="font-family:var(--font-sans);font-size:15px;line-height:1.55;color:var(--text-muted);margin-top:10px;max-width:52ch">Look up a Dutch word in the dictionary, then add it to your deck.</div>
+        <div style="font-family:var(--font-sans);font-size:14px;color:var(--text-faint);margin-top:9px">abcdefghijklmnopqrstuvwxyz &nbsp; ABCDEFGHIJKLM &nbsp; 0123456789</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Serif ramp — Dutch and display</div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-word-hero</div><div class="ramp__spec">600 · 28px / 1.1<br>flashcard, capture word</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:28px;line-height:1.1;color:var(--text-display)">afspraak</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">size-hero-stat</div><div class="ramp__spec">600 · 26px / 1.1<br>appbar title, hero stat</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:26px;line-height:1.1;color:var(--text-display)">Add a word</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-display</div><div class="ramp__spec">600 · 22px / 1.06<br>screen titles</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:22px;line-height:1.06;color:var(--text-display);letter-spacing:-.01em">Your deck</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">size-title-serif</div><div class="ramp__spec">600 · 20px<br>section titles</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:20px;color:var(--text-display)">Which meaning fits?</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-word-row</div><div class="ramp__spec">600 · 18px / 1.15<br>word in a list</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:18px;line-height:1.15;color:var(--text-display)">huurder</div>
+    </div>
+    <div class="ramp" style="border-bottom:none">
+      <div><div class="ramp__name">--type-quote</div><div class="ramp__spec">500 · 16px / 1.5 · italic<br>in-context example</div></div>
+      <div style="font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:16px;line-height:1.5;color:var(--ink-quote)">De hond rent door het park.</div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Sans ramp — UI chrome</div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-button</div><div class="ramp__spec">700 · 16px / 1</div></div>
+      <div style="font-family:var(--font-sans);font-weight:700;font-size:16px;line-height:1;color:var(--text-body)">Start practice</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-body</div><div class="ramp__spec">400 · 16px / 1.55</div></div>
+      <div style="font-family:var(--font-sans);font-size:16px;line-height:1.55;color:var(--text-body);max-width:46ch">Capture the Dutch words you meet, then practise them as flashcards.</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-body-sm</div><div class="ramp__spec">400 · 14px / 1.45</div></div>
+      <div style="font-family:var(--font-sans);font-size:14px;line-height:1.45;color:var(--ink-500)">appointment / agreement</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-caption</div><div class="ramp__spec">400 · 12px / 1.4</div></div>
+      <div style="font-family:var(--font-sans);font-size:12px;line-height:1.4;color:var(--text-faint)">Progress syncs to your account</div>
+    </div>
+    <div class="ramp">
+      <div><div class="ramp__name">--type-label</div><div class="ramp__spec">700 · 12px / 1<br>uppercase · .12em</div></div>
+      <div style="font-family:var(--font-sans);font-weight:700;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:.12em;color:var(--text-faint)">In context</div>
+    </div>
+    <div class="ramp" style="border-bottom:none">
+      <div><div class="ramp__name">--type-wordmark</div><div class="ramp__spec">600 · 12px / 1 · serif<br>uppercase · .18em</div></div>
+      <div style="font-family:var(--font-serif);font-weight:600;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:.18em;color:var(--primary)">Woordkast</div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Rules worth keeping</div>
+    <p class="grp__note" style="max-width:78ch"><strong style="color:var(--text-body)">Serif means Dutch.</strong> If a string is Dutch the learner is meant to read, it is Spectral. If it is the app speaking — a button, a label, a hint — it is Hanken Grotesk. The one deliberate exception is the wordmark, which is serif because it is a name, not chrome.<br><br><strong style="color:var(--text-body)">Examples are italic.</strong> Every in-context sentence is Spectral italic at 16/1.5 — that is what separates "a sentence using this word" from "the app's own copy about the word".<br><br><strong style="color:var(--text-body)">Labels are the only uppercase.</strong> Tracking is doing the work at 12px; nothing larger is ever set in caps.</p>
+  </div>
+</div>

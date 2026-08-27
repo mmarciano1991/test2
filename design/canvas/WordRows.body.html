@@ -1,0 +1,128 @@
+<style>
+  .chip{padding:4px 12px;border-radius:var(--radius-chip);font-weight:700;font-size:14px;display:inline-block;}
+  .chip--de{background:var(--primary);color:var(--cream-000);}
+  .chip--het{background:var(--cream-000);color:var(--primary);box-shadow:inset 0 0 0 1.6px var(--primary);}
+  .chip--sm{font-size:13px;}
+  .eyebrow{font:700 var(--size-label)/1 var(--font-sans);text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--text-faint);}
+  .icon-btn{width:38px;height:38px;padding:0;border-radius:var(--radius-input);border:1.5px solid var(--line-cool-strong);background:var(--surface-card);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .icon-btn--ghost{background:none;border-color:transparent;}
+  .wordrow{width:100%;text-align:left;background:var(--surface-card);border:1px solid var(--border-warm);border-radius:var(--radius-button);padding:13px 16px;display:flex;flex-direction:column;gap:var(--space-3);}
+  .wordrow.is-hover{background:var(--bg-canvas);border-color:var(--line-cool-strong);}
+  .wordrow__row{display:flex;align-items:center;gap:var(--space-5);}
+  .wordrow__main{flex:1;min-width:0;display:flex;align-items:center;}
+  .wordrow__content{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-1);padding:var(--space-2);}
+  .wordrow__head{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-1);max-width:100%;}
+  .wordrow__dutch{font-family:var(--font-serif);font-size:var(--size-word-row);font-weight:600;line-height:1.15;color:var(--text-display);}
+  .wordrow__gloss{font-size:var(--size-body-sm);color:var(--ink-500);}
+  .wordrow__context{display:flex;flex-direction:column;gap:var(--space-3);}
+  .wordrow__rule{align-self:stretch;height:1px;background:var(--border-cool);}
+  .wordrow__example{display:flex;flex-direction:column;gap:var(--space-1);}
+  .wordrow__example-nl{font-family:var(--font-serif);font-style:italic;font-size:var(--size-body);line-height:1.5;color:var(--text-muted);}
+  .wordrow__example-en{font-size:var(--size-body);line-height:1.55;color:var(--text-muted);}
+  .wordrow-compact{width:100%;background:var(--surface-card);border:1px solid var(--border-warm);border-radius:var(--radius-button);padding:13px 16px;display:flex;align-items:center;gap:var(--space-3);}
+  .wordrow-compact__dutch{font-family:var(--font-serif);font-weight:600;font-size:var(--size-word-row);color:var(--text-display);}
+  .wordrow-compact__gloss{font-size:var(--size-body-sm);color:var(--ink-500);}
+  .tricky-tag{flex-shrink:0;padding:3px 8px;border-radius:var(--radius-pill);background:var(--caution-bg);border:1px solid var(--caution-border);color:var(--caution-fg);font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .mastery-meter{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:var(--space-1);}
+  .mastery-meter__label{font-size:var(--size-label);font-weight:700;letter-spacing:var(--tracking-label);color:var(--text-body);}
+  .mastery{display:inline-block;width:32px;height:8px;border-radius:var(--radius-chip);overflow:hidden;}
+  .mastery__fill{display:block;height:100%;border-radius:var(--radius-chip);}
+  .mastery--weak{background:var(--ink-300);}.mastery--weak .mastery__fill{background:#5a6b86;}
+  .mastery--medium{background:var(--caution-bg);}.mastery--medium .mastery__fill{background:var(--caution-solid);}
+  .mastery--mastered{background:var(--success-bg);}.mastery--mastered .mastery__fill{background:var(--success-solid);}
+  .link-btn{background:none;border:none;color:var(--primary);font-weight:700;font-size:13px;padding:0;}
+  .readtext{font-family:var(--font-serif);font-size:17px;line-height:1.75;color:var(--text-body);margin:0;}
+  .readtext__word{background:none;border:none;padding:1px 3px;margin:-1px -3px;border-radius:5px;font:inherit;color:inherit;}
+  .readtext__word--active{background:var(--line-blue-soft);color:var(--primary);font-weight:600;}
+  .readtext__word--added{color:var(--success-solid);font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;display:block;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Word rows & reading</h1>
+  <p class="sheet__lede">The deck row is the only component that changes shape rather than colour when it opens — the example sentence appears <em>inside</em> the same card, below a rule, instead of pushing out a panel. Two variants exist because two jobs do: the deck row is a control, the compact row is a read-only listing.</p>
+
+  <div class="grp">
+    <div class="grp__name">Deck row — closed</div>
+    <div style="max-width:380px" class="stack" style="gap:10px">
+      <div class="wordrow">
+        <div class="wordrow__row">
+          <div class="wordrow__main">
+            <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+            <div class="wordrow__content">
+              <span class="wordrow__head"><span class="chip chip--de chip--sm">de</span><span class="wordrow__dutch">afspraak</span></span>
+              <span class="wordrow__gloss">appointment / agreement</span>
+            </div>
+          </div>
+          <span class="mastery-meter"><span class="mastery mastery--medium"><span class="mastery__fill" style="width:33%"></span></span><span class="mastery-meter__label">Learning</span></span>
+          <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+        </div>
+      </div>
+      <div class="wordrow is-hover" style="margin-top:10px">
+        <div class="wordrow__row">
+          <div class="wordrow__main">
+            <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+            <div class="wordrow__content">
+              <span class="wordrow__head"><span class="chip chip--het chip--sm">het</span><span class="wordrow__dutch">slot</span><span class="tricky-tag" style="margin-top:2px">Tricky</span></span>
+              <span class="wordrow__gloss">lock</span>
+            </div>
+          </div>
+          <span class="mastery-meter"><span class="mastery mastery--weak"><span class="mastery__fill" style="width:17%"></span></span><span class="mastery-meter__label">New</span></span>
+          <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:14px">Hover swaps the white surface for the canvas cream and cools the border — the row recedes into the page rather than lighting up, which keeps a scrolled list calm.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Deck row — open, with a captured source sentence</div>
+    <div style="max-width:380px">
+      <div class="wordrow">
+        <div class="wordrow__row">
+          <div class="wordrow__main">
+            <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="transform:rotate(180deg)"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+            <div class="wordrow__content">
+              <span class="wordrow__head"><span class="chip chip--de chip--sm">de</span><span class="wordrow__dutch">hond</span></span>
+              <span class="wordrow__gloss">dog</span>
+            </div>
+          </div>
+          <span class="mastery-meter"><span class="mastery mastery--mastered"><span class="mastery__fill" style="width:100%"></span></span><span class="mastery-meter__label">Mature</span></span>
+          <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+        </div>
+        <div class="wordrow__context">
+          <div class="wordrow__rule"></div>
+          <div style="margin-bottom:10px">
+            <div class="eyebrow">Where you met it</div>
+            <div class="wordrow__example-nl" style="margin-top:4px">De hond loopt in de tuin.</div>
+          </div>
+          <div class="eyebrow">In context</div>
+          <div class="wordrow__example">
+            <div class="wordrow__example-nl">De hond rent door het park.</div>
+            <div class="wordrow__example-en">The dog runs through the park.</div>
+          </div>
+          <button class="link-btn" style="align-self:flex-start;margin-top:10px">Edit translation</button>
+        </div>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:14px"><strong style="color:var(--text-body)">Two sentences, never merged.</strong> "Where you met it" is the real sentence the word was captured from; "In context" is the dictionary's own example. Both are Spectral italic, but the labels keep them apart — seeing a word next to where you actually read it is the check a dictionary example alone can't offer.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Compact row — read-only listings</div>
+    <div style="max-width:380px" class="stack" style="gap:9px">
+      <div class="wordrow-compact"><span class="chip chip--de chip--sm">de</span><span class="wordrow-compact__dutch">huurder</span><span class="wordrow-compact__gloss">tenant</span></div>
+      <div class="wordrow-compact" style="margin-top:9px"><span class="chip chip--het chip--sm">het</span><span class="wordrow-compact__dutch">bezwaar</span><span class="wordrow-compact__gloss">objection</span><span class="tricky-tag">Tricky</span></div>
+    </div>
+    <p class="grp__note" style="margin-top:14px">Same surface and border as the deck row, but one line and no controls — used where a list is a result, not an inventory (the session report's words-to-review).</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Readable text — every word is a tap target</div>
+    <div style="max-width:420px;background:var(--surface-card);border:1px solid var(--border-warm);border-radius:var(--radius-button);padding:18px">
+      <p class="readtext"><button class="readtext__word">De</button> <button class="readtext__word readtext__word--added">kat</button> <button class="readtext__word">zit</button> <button class="readtext__word">op</button> <button class="readtext__word">de</button> <button class="readtext__word">mat</button>. <button class="readtext__word">De</button> <button class="readtext__word readtext__word--active">hond</button> <button class="readtext__word">loopt</button> <button class="readtext__word">in</button> <button class="readtext__word">de</button> <button class="readtext__word">tuin</button>.</p>
+    </div>
+    <p class="grp__note" style="margin-top:14px">Three states in one line of prose: untouched, <strong style="color:var(--primary)">active</strong> (soft blue fill, the word currently being looked up) and <strong style="color:var(--success-solid)">added</strong> (green, underlined). Punctuation and spaces stay plain text, so the paragraph reads as prose rather than as a row of buttons — the negative margins cancel the padding so nothing shifts when a word highlights.</p>
+  </div>
+</div>

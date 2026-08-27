@@ -1,0 +1,71 @@
+<style>
+  .el{width:168px;}
+  .el__box{height:82px;border-radius:16px;background:var(--surface-card);border:1px solid var(--border-cool);}
+  .mo{display:grid;grid-template-columns:96px 1fr 76px;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-divider);}
+  .mo__name{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--text-faint);}
+  .mo__track{height:8px;background:var(--line-cool);border-radius:999px;overflow:hidden;}
+  .mo__dot{width:22px;height:8px;border-radius:999px;background:var(--primary);animation-name:slide;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(.2,0,0,1);}
+  @keyframes slide{0%{transform:translateX(0)}45%{transform:translateX(calc(100% * 8))}55%{transform:translateX(calc(100% * 8))}100%{transform:translateX(0)}}
+  .mo__use{font-size:11.5px;color:var(--text-muted);}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Foundations</p>
+  <h1 class="sheet__title">Elevation & motion</h1>
+  <p class="sheet__lede">Shadows are tinted with the blue they sit on — <span class="spec">rgba(15,43,84,…)</span> for neutral surfaces, <span class="spec">rgba(27,64,121,…)</span> for anything already painted primary — so nothing casts a grey shadow onto cream. These can't be Figma variables, so they live as effect styles there and hand-authored tokens here; the two have to be kept in step by hand.</p>
+
+  <div class="grp">
+    <div class="grp__name">Shadows</div>
+    <div class="row" style="gap:22px">
+      <div class="el tile"><div class="el__box" style="box-shadow:var(--shadow-card-sm)"></div><div class="caption">card-sm</div><div class="spec">0 1 2 · .04</div></div>
+      <div class="el tile"><div class="el__box" style="box-shadow:var(--shadow-field)"></div><div class="caption">field</div><div class="spec">0 2 9 · .05</div></div>
+      <div class="el tile"><div class="el__box" style="box-shadow:var(--shadow-card)"></div><div class="caption">card</div><div class="spec">0 8 22 · .07</div></div>
+      <div class="el tile"><div class="el__box" style="box-shadow:var(--shadow-float)"></div><div class="caption">float</div><div class="spec">0 16 40 · .13</div></div>
+    </div>
+    <div class="row" style="gap:22px;margin-top:22px">
+      <div class="el tile"><div class="el__box" style="background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow-primary)"></div><div class="caption">primary</div><div class="spec">0 8 20 · .28 blue</div></div>
+      <div class="el tile"><div class="el__box" style="background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow-pressed)"></div><div class="caption">pressed</div><div class="spec">0 2 6 · .28 blue</div></div>
+      <div class="el tile"><div class="el__box" style="background:var(--primary);border-color:var(--primary);box-shadow:var(--shadow-fab)"></div><div class="caption">fab</div><div class="spec">0 12 26 · .36 blue</div></div>
+      <div class="el tile"><div class="el__box" style="background:var(--success-solid);border-color:var(--success-solid);box-shadow:var(--shadow-success)"></div><div class="caption">success</div><div class="spec">0 8 18 · .26 green</div></div>
+    </div>
+    <p class="grp__note" style="margin-top:18px"><strong style="color:var(--text-body)">Pressed is not a smaller card shadow.</strong> It is the same colour and opacity as <span class="spec">primary</span> with the offset and blur pulled in tight — the button keeps its weight but drops closer to the surface, which is what makes the press read as depth rather than as a colour change.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Easing</div>
+    <div class="row" style="gap:34px;align-items:flex-start">
+      <div>
+        <svg width="120" height="120" viewBox="-6 -6 112 112">
+          <rect x="0" y="0" width="100" height="100" fill="var(--surface-tint)" rx="6"/>
+          <path d="M0,100 C20,100 0,0 100,0" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="caption" style="margin-top:8px">--ease-standard</div>
+        <div class="spec">cubic-bezier(.2, 0, 0, 1)</div>
+        <div class="mo__use" style="margin-top:6px;max-width:200px">Decelerate into rest. The default for any state change.</div>
+      </div>
+      <div>
+        <svg width="120" height="120" viewBox="-6 -6 112 112">
+          <rect x="0" y="0" width="100" height="100" fill="var(--surface-tint)" rx="6"/>
+          <path d="M0,100 C30,100 0,0 100,0" fill="none" stroke="var(--blue-500)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="caption" style="margin-top:8px">--ease-emphasized</div>
+        <div class="spec">cubic-bezier(.3, 0, 0, 1)</div>
+        <div class="mo__use" style="margin-top:6px;max-width:200px">Press and recover, and the flashcard flip.</div>
+      </div>
+      <div style="max-width:280px">
+        <div class="caption">Why the screen-expand differs</div>
+        <p class="mo__use" style="margin-top:7px;line-height:1.6">The container transform that grows a button into a screen uses a symmetric <span class="spec">cubic-bezier(.4, 0, .2, 1)</span> instead. The decelerate curve is ~40% expanded within a few frames, which skips the growing shape almost entirely — the symmetric curve is what lets the motion be seen at all.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Durations</div>
+    <div class="mo"><span class="mo__name">--motion-fast</span><span class="mo__track"><span class="mo__dot" style="animation-duration:1.6s"></span></span><span class="mo__use">120ms · taps</span></div>
+    <div class="mo"><span class="mo__name">--motion-base</span><span class="mo__track"><span class="mo__dot" style="animation-duration:1.9s"></span></span><span class="mo__use">180ms · colour, shadow</span></div>
+    <div class="mo"><span class="mo__name">--motion-nav</span><span class="mo__track"><span class="mo__dot" style="animation-duration:2.3s"></span></span><span class="mo__use">260ms · nav layout</span></div>
+    <div class="mo"><span class="mo__name">--motion-expand</span><span class="mo__track"><span class="mo__dot" style="animation-duration:2.7s"></span></span><span class="mo__use">340ms · screen open</span></div>
+    <div class="mo" style="border-bottom:none"><span class="mo__name">--motion-flip</span><span class="mo__track"><span class="mo__dot" style="animation-duration:3.2s"></span></span><span class="mo__use">480ms · card flip</span></div>
+    <p class="grp__note" style="margin-top:16px">All of it is switched off under <span class="spec">prefers-reduced-motion</span> — including the transforms on press, which are reset with <span class="spec">!important</span> rather than merely un-transitioned, so a reduced-motion user gets a static app rather than an instantly-jumping one.</p>
+  </div>
+</div>

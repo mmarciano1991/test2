@@ -1,0 +1,84 @@
+<style>
+  .chip{padding:4px 12px;border-radius:var(--radius-chip);font-weight:700;font-size:14px;display:inline-block;}
+  .chip--de{background:var(--primary);color:var(--cream-000);}
+  .chip--het{background:var(--cream-000);color:var(--primary);box-shadow:inset 0 0 0 1.6px var(--primary);}
+  .chip--sm{padding:4px 12px;font-size:13px;}
+  .badge{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;background:var(--success-bg);color:var(--success-fg);font-weight:700;font-size:12.5px;}
+  .tricky-tag{display:inline-block;padding:3px 8px;border-radius:var(--radius-pill);background:var(--caution-bg);border:1px solid var(--caution-border);color:var(--caution-fg);font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .sensecard__tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--text-faint);background:var(--surface-tint);padding:3px 8px;border-radius:var(--radius-pill);white-space:nowrap;}
+  .suggestion-chip{border:1px solid var(--line-blue-soft);background:var(--surface-card);color:var(--primary);font-family:var(--font-serif);font-size:15.5px;padding:8px 14px;border-radius:11px;}
+  .suggestion-chip.is-press{background:var(--surface-tint);}
+  .mastery-meter{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-1);}
+  .mastery-meter__label{font-size:var(--size-label);font-weight:700;letter-spacing:var(--tracking-label);color:var(--text-body);}
+  .mastery{display:inline-block;width:32px;height:8px;border-radius:var(--radius-chip);overflow:hidden;}
+  .mastery__fill{display:block;height:100%;border-radius:var(--radius-chip);}
+  .mastery--weak{background:var(--ink-300);}.mastery--weak .mastery__fill{background:#5a6b86;}
+  .mastery--medium{background:var(--caution-bg);}.mastery--medium .mastery__fill{background:var(--caution-solid);}
+  .mastery--mastering,.mastery--mastered{background:var(--success-bg);}
+  .mastery--mastering .mastery__fill,.mastery--mastered .mastery__fill{background:var(--success-solid);}
+  .grade-toast{display:inline-block;background:var(--ink-900);color:var(--cream-050);font-size:12.5px;font-weight:700;padding:8px 15px;border-radius:var(--radius-pill);box-shadow:var(--shadow-card);white-space:nowrap;}
+  .divider-rule{width:60px;height:1px;background:var(--blue-200);}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:block;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Chips, tags & meters</h1>
+  <p class="sheet__lede">Small carriers of a single fact. The gender chip is the one that earns its prominence — <em>de</em> versus <em>het</em> is the thing English speakers get wrong most, so it is never a subtitle: it sits above the word, filled or outlined, as the first thing read.</p>
+
+  <div class="grp">
+    <div class="grp__name">Gender chip — filled means <em>de</em>, outlined means <em>het</em></div>
+    <div class="row" style="gap:30px;align-items:flex-start">
+      <div><span class="cell__state">de · md</span><span class="chip chip--de">de</span></div>
+      <div><span class="cell__state">het · md</span><span class="chip chip--het">het</span></div>
+      <div><span class="cell__state">de · sm</span><span class="chip chip--de chip--sm">de</span></div>
+      <div><span class="cell__state">het · sm</span><span class="chip chip--het chip--sm">het</span></div>
+      <div style="margin-left:20px"><span class="cell__state">In place, above the word</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+          <span class="chip chip--de chip--sm">de</span>
+          <span style="font-family:var(--font-serif);font-weight:600;font-size:18px;color:var(--text-display)">afspraak</span>
+        </div>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:16px">The outline is an <span class="spec">inset box-shadow</span> at 1.6px, not a border — so the two chips have identical outer dimensions and a list of mixed genders keeps a straight left edge.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Mastery meter — the spaced-repetition ladder, 0 → 6</div>
+    <div class="row" style="gap:44px">
+      <div><span class="cell__state">Level 0–1</span><span class="mastery-meter"><span class="mastery mastery--weak"><span class="mastery__fill" style="width:0%"></span></span><span class="mastery-meter__label">New</span></span></div>
+      <div><span class="cell__state">Level 2–3</span><span class="mastery-meter"><span class="mastery mastery--medium"><span class="mastery__fill" style="width:33%"></span></span><span class="mastery-meter__label">Learning</span></span></div>
+      <div><span class="cell__state">Level 4–5</span><span class="mastery-meter"><span class="mastery mastery--mastering"><span class="mastery__fill" style="width:67%"></span></span><span class="mastery-meter__label">Strong</span></span></div>
+      <div><span class="cell__state">Level 6</span><span class="mastery-meter"><span class="mastery mastery--mastered"><span class="mastery__fill" style="width:100%"></span></span><span class="mastery-meter__label">Mature</span></span></div>
+      <div><span class="cell__state">Bare, no label</span><span class="mastery mastery--medium"><span class="mastery__fill" style="width:50%"></span></span></div>
+    </div>
+    <p class="grp__note" style="margin-top:16px">32 × 8px. The <em>track</em> tint changes with the tier as well as the fill, so the meter reads at a glance even at 0% — an empty grey track and an empty green track are different states, not the same one.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Tags & badges</div>
+    <div class="row" style="gap:34px;align-items:flex-start">
+      <div><span class="cell__state">Badge · success</span><span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.55 18L3.85 12.3L5.275 10.875L9.55 15.15L18.725 5.975L20.15 7.4L9.55 18Z"/></svg>Batch of 8 done</span></div>
+      <div><span class="cell__state">Tricky · leech</span><span class="tricky-tag">Tricky</span></div>
+      <div><span class="cell__state">Sense tag</span><span class="sensecard__tag">Plural</span></div>
+      <div><span class="cell__state">Sense tag</span><span class="sensecard__tag">Past participle</span></div>
+      <div><span class="cell__state">Grade toast</span><span class="grade-toast">Next review in 3 days</span></div>
+    </div>
+    <div class="row" style="gap:34px;align-items:flex-start;margin-top:24px">
+      <div><span class="cell__state">Grade toast · miss</span><span class="grade-toast">One more try coming up</span></div>
+      <div><span class="cell__state">Grade toast · lapse</span><span class="grade-toast">Coming back tomorrow</span></div>
+      <div><span class="cell__state">Divider rule</span><div style="padding:8px 0"><span class="divider-rule" style="display:block"></span></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Spelling suggestions</div>
+    <div class="row" style="gap:12px">
+      <button class="suggestion-chip">terwijl</button>
+      <button class="suggestion-chip">termijn</button>
+      <button class="suggestion-chip is-press">tegen</button>
+      <span class="spec" style="align-self:center;margin-left:10px">pressed →</span>
+    </div>
+    <p class="grp__note" style="margin-top:16px">Set in <strong style="color:var(--text-body)">Spectral</strong>, because each chip is a Dutch word being offered — the same rule that governs everything else. They now appear <em>beside</em> an online result rather than instead of one; suppressing the real lookup because a near-match existed was what once made "termijn" un-findable.</p>
+  </div>
+</div>

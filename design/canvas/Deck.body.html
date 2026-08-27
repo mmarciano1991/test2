@@ -1,0 +1,96 @@
+<div class="phone">
+  <div style="flex:1;min-height:0;display:flex;flex-direction:column">
+    <div class="screen">
+      <header class="appbar">
+        <div class="appbar__row">
+          <h1 class="appbar__title title-serif">Your deck</h1>
+        </div>
+        <form class="appbar__search">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input placeholder="Search Dutch or English…" readonly>
+        </form>
+      </header>
+
+      <div class="screen__body gutter" style="padding-top:14px;padding-bottom:20px">
+        <div class="wordlist">
+          <div class="wordrow">
+            <div class="wordrow__row">
+              <div class="wordrow__main">
+                <button class="icon-btn icon-btn--ghost icon-btn--expand" aria-expanded="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+                <div class="wordrow__content">
+                  <span class="wordrow__head"><span class="chip chip--de chip--sm">de</span><span class="wordrow__dutch">hond</span></span>
+                  <span class="wordrow__gloss">dog</span>
+                </div>
+              </div>
+              <span class="mastery-meter"><span class="mastery mastery--mastered"><span class="mastery__fill" style="width:100%"></span></span><span class="mastery-meter__label">Mature</span></span>
+              <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+            </div>
+            <div class="wordrow__context">
+              <div class="wordrow__rule"></div>
+              <div style="margin-bottom:10px">
+                <div class="eyebrow">Where you met it</div>
+                <div class="wordrow__example-nl">De hond loopt in de tuin.</div>
+              </div>
+              <div class="eyebrow">In context</div>
+              <div class="wordrow__example">
+                <div class="wordrow__example-nl">De hond rent door het park.</div>
+                <div class="wordrow__example-en">The dog runs through the park.</div>
+              </div>
+              <button class="link-btn" style="margin-top:10px;align-self:flex-start">Edit translation</button>
+            </div>
+          </div>
+
+          <div class="wordrow">
+            <div class="wordrow__row">
+              <div class="wordrow__main">
+                <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+                <div class="wordrow__content">
+                  <span class="wordrow__head"><span class="chip chip--de chip--sm">de</span><span class="wordrow__dutch">afspraak</span></span>
+                  <span class="wordrow__gloss">appointment / agreement</span>
+                </div>
+              </div>
+              <span class="mastery-meter"><span class="mastery mastery--medium"><span class="mastery__fill" style="width:33%"></span></span><span class="mastery-meter__label">Learning</span></span>
+              <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="wordrow">
+            <div class="wordrow__row">
+              <div class="wordrow__main">
+                <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+                <div class="wordrow__content">
+                  <span class="wordrow__head"><span class="chip chip--het chip--sm">het</span><span class="wordrow__dutch">slot</span><span class="tricky-tag" style="margin-top:2px">Tricky</span></span>
+                  <span class="wordrow__gloss">lock</span>
+                </div>
+              </div>
+              <span class="mastery-meter"><span class="mastery mastery--weak"><span class="mastery__fill" style="width:17%"></span></span><span class="mastery-meter__label">New</span></span>
+              <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="wordrow">
+            <div class="wordrow__row">
+              <div class="wordrow__main">
+                <button class="icon-btn icon-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.375L6 9.375L7.4 7.975L12 12.575L16.6 7.975L18 9.375L12 15.375Z"/></svg></button>
+                <div class="wordrow__content">
+                  <span class="wordrow__head"><span class="chip chip--de chip--sm">de</span><span class="wordrow__dutch">huurder</span></span>
+                  <span class="wordrow__gloss">tenant</span>
+                </div>
+              </div>
+              <span class="mastery-meter"><span class="mastery mastery--mastering"><span class="mastery__fill" style="width:67%"></span></span><span class="mastery-meter__label">Strong</span></span>
+              <button class="icon-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13V11H19V13H5Z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottomnav">
+    <nav class="bottomnav__pill">
+      <button class="tab"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 21V9L12 3L20 9V21H14V14H10V21H4Z"/></svg><span>Home</span></button>
+      <button class="tab tab--active"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.75 22C6 22 5.35417 21.7458 4.8125 21.2375C4.27083 20.7292 4 20.1 4 19.35V5.4C4 4.76667 4.19583 4.2 4.5875 3.7C4.97917 3.2 5.49167 2.88334 6.125 2.75L16 0.800003V16.8L6.525 18.7C6.375 18.7333 6.25 18.8125 6.15 18.9375C6.05 19.0625 6 19.2 6 19.35C6 19.5333 6.075 19.6875 6.225 19.8125C6.375 19.9375 6.55 20 6.75 20H18V4H20V22H6.75ZM7 16.575L9 16.175V4.225L7 4.625V16.575Z"/></svg><span>Deck</span></button>
+      <button class="tab"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.15 20.7L11.1 14.6C10.7667 14.7333 10.4292 14.8333 10.0875 14.9C9.74583 14.9667 9.38333 15 9 15C7.33333 15 5.91667 14.4167 4.75 13.25C3.58333 12.0833 3 10.6667 3 9C3 8.4 3.08333 7.82917 3.25 7.2875C3.41667 6.74583 3.65 6.23333 3.95 5.75L7.6 9.4L9.4 7.6L5.75 3.95C6.23333 3.65 6.74583 3.41667 7.2875 3.25C7.82917 3.08333 8.4 3 9 3C10.6667 3 12.0833 3.58333 13.25 4.75C14.4167 5.91667 15 7.33333 15 9C15 9.38333 14.9667 9.74583 14.9 10.0875C14.8333 10.4292 14.7333 10.7667 14.6 11.1L20.7 17.15C20.9 17.35 21 17.5917 21 17.875C21 18.1583 20.9 18.4 20.7 18.6L18.6 20.7C18.4 20.9 18.1583 21 17.875 21C17.5917 21 17.35 20.9 17.15 20.7Z"/></svg><span>Settings</span></button>
+    </nav>
+    <button class="fab"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11 13H5V11H11V5H13V11H19V13H13V19H11V13Z"/></svg></button>
+  </div>
+</div>

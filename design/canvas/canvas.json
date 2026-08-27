@@ -1,0 +1,61 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "Foundations" },
+    { "id": "page-2", "name": "Components" },
+    { "id": "page-3", "name": "Screens" }
+  ],
+  "artboards": [
+    { "file": "Colour.dc.html",     "page": "page-1", "x": 0,    "y": 0,    "w": 1000, "h": 1780 },
+    { "file": "Typography.dc.html", "page": "page-1", "x": 1120, "y": 0,    "w": 900,  "h": 2150 },
+    { "file": "Space.dc.html",      "page": "page-1", "x": 2120, "y": 0,    "w": 1000, "h": 1180, "title": "Space & grid" },
+    { "file": "Elevation.dc.html",  "page": "page-1", "x": 3220, "y": 0,    "w": 900,  "h": 1420 },
+    { "file": "Icons.dc.html",      "page": "page-1", "x": 4220, "y": 0,    "w": 880,  "h": 900 },
+
+    { "file": "Buttons.dc.html",    "page": "page-2", "x": 0,    "y": 0,    "w": 900,  "h": 1500 },
+    { "file": "Fields.dc.html",     "page": "page-2", "x": 1020, "y": 0,    "w": 1160, "h": 1250 },
+    { "file": "Chips.dc.html",      "page": "page-2", "x": 2300, "y": 0,    "w": 900,  "h": 1050 },
+    { "file": "Cards.dc.html",      "page": "page-2", "x": 3320, "y": 0,    "w": 820,  "h": 1780 },
+    { "file": "WordRows.dc.html",   "page": "page-2", "x": 0,    "y": 1920, "w": 900,  "h": 1690 },
+    { "file": "Notices.dc.html",    "page": "page-2", "x": 1020, "y": 1920, "w": 620,  "h": 1230 },
+    { "file": "Nav.dc.html",        "page": "page-2", "x": 1760, "y": 1920, "w": 580,  "h": 1600 },
+    { "file": "Flashcard.dc.html",  "page": "page-2", "x": 2460, "y": 1920, "w": 1000, "h": 1620 },
+
+    { "file": "Main.dc.html",       "page": "page-3", "x": 0,    "y": 0,    "w": 390,  "h": 844, "title": "Dashboard" },
+    { "file": "Welcome.dc.html",    "page": "page-3", "x": 490,  "y": 0,    "w": 390,  "h": 844 },
+    { "file": "Auth.dc.html",       "page": "page-3", "x": 980,  "y": 0,    "w": 390,  "h": 844, "title": "Create account" },
+    { "file": "Confirm.dc.html",    "page": "page-3", "x": 1470, "y": 0,    "w": 390,  "h": 844, "title": "Confirm by code" },
+    { "file": "Capture.dc.html",    "page": "page-3", "x": 1960, "y": 0,    "w": 390,  "h": 844, "title": "Add a word" },
+    { "file": "Deck.dc.html",       "page": "page-3", "x": 0,    "y": 1000, "w": 390,  "h": 844, "title": "Your deck" },
+    { "file": "Practice.dc.html",   "page": "page-3", "x": 490,  "y": 1000, "w": 390,  "h": 844 },
+    { "file": "Report.dc.html",     "page": "page-3", "x": 980,  "y": 1000, "w": 390,  "h": 844, "title": "Session report" },
+    { "file": "AddText.dc.html",    "page": "page-3", "x": 1470, "y": 1000, "w": 390,  "h": 844, "title": "Add from text" },
+    { "file": "Settings.dc.html",   "page": "page-3", "x": 1960, "y": 1000, "w": 390,  "h": 844 }
+  ],
+  "annotations": [
+    {
+      "id": "note-foundations",
+      "page": "page-1",
+      "x": 0,
+      "y": -340,
+      "w": 620,
+      "text": "FOUNDATIONS\n\nEverything here is read out of the live app: colour and size tokens come from src/styles/tokens/tokens.json (sourced from Figma), the shadow, motion and type-composition layers are hand-authored alongside it.\n\nNothing on this page is a proposal — it is what ships today."
+    },
+    {
+      "id": "note-components",
+      "page": "page-2",
+      "x": 0,
+      "y": -420,
+      "w": 640,
+      "text": "COMPONENTS\n\nEach artboard renders the real CSS: design/canvas/_app.css is copied verbatim from src/styles/app.css by design/canvas/sync-app-css.mjs, so these can't quietly drift from the app.\n\nStates that are normally hover/active pseudo-classes are rendered as separate instances (marked DEFAULT / HOVER / PRESSED / FOCUS) so you can see all of them at once instead of hunting for them."
+    },
+    {
+      "id": "note-screens",
+      "page": "page-3",
+      "x": 0,
+      "y": -340,
+      "w": 620,
+      "text": "SCREENS\n\nTen screens at 390 × 844, built from the same component CSS rather than redrawn. Content is representative, not live — the deck, counts and streak are plausible sample data.\n\nEach screen is shown in the state worth looking at: Add a word in the two-candidate ambiguity, Add from text mid-read, the dashboard with work to do."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}

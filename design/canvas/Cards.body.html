@@ -1,0 +1,174 @@
+<style>
+  .chip{padding:4px 12px;border-radius:var(--radius-chip);font-weight:700;font-size:14px;display:inline-block;}
+  .chip--de{background:var(--primary);color:var(--cream-000);}
+  .chip--het{background:var(--cream-000);color:var(--primary);box-shadow:inset 0 0 0 1.6px var(--primary);}
+  .chip--sm{font-size:13px;}
+  .eyebrow{font:700 var(--size-label)/1 var(--font-sans);text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--text-faint);}
+  .quote{font-family:var(--font-serif);font-style:italic;font-size:var(--size-body);color:var(--ink-quote);line-height:1.5;}
+  .wordcard{background:var(--surface-card);border:1px solid var(--border-cool);border-radius:var(--radius-card);padding:22px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;align-items:flex-start;gap:7px;}
+  .wordcard__word{font-family:var(--font-serif);font-weight:600;font-size:34px;line-height:1.05;color:var(--text-display);margin-top:4px;}
+  .wordcard__gloss{font-size:18px;color:var(--primary);}
+  .wordcard__rule{height:1px;width:100%;background:var(--line-divider);margin:11px 0 4px;}
+  .wordcard__example-en{font-size:var(--size-body-sm);color:var(--text-faint);}
+  .sensecard{background:var(--surface-card);border:1px solid var(--border-cool);border-radius:var(--radius-card);padding:16px 18px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;gap:6px;}
+  .sensecard__head{display:flex;align-items:center;gap:8px;}
+  .sensecard__word{font-family:var(--font-serif);font-weight:600;font-size:20px;color:var(--text-display);}
+  .sensecard__tag{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--text-faint);background:var(--surface-tint);padding:3px 8px;border-radius:var(--radius-pill);white-space:nowrap;}
+  .sensecard__gloss{font-size:16px;color:var(--primary);}
+  .sensecard__example{margin-top:2px;}
+  .sensecard__example-en{font-size:var(--size-body-sm);color:var(--text-faint);margin-top:2px;}
+  .sensecard__btn{margin-top:6px;align-self:flex-start;background:var(--surface-card);color:var(--primary);border:1.5px solid var(--line-cool-strong);padding:13px 18px;border-radius:var(--radius-input);font:700 var(--size-body)/1 var(--font-sans);}
+  .stat-card{flex:1;background:var(--surface-card);border:1px solid var(--border-warm);border-radius:18px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .stat-card__value{font-family:var(--font-serif);font-weight:600;font-size:var(--size-word-hero);line-height:1.1;}
+  .stat-card__label{font-weight:700;font-size:var(--size-body);color:var(--text-faint);}
+  .hero{display:flex;flex-direction:column;gap:22px;background:var(--primary);color:var(--on-primary);border-radius:var(--radius-card);padding:20px 21px;position:relative;overflow:hidden;}
+  .hero__label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.78;font-weight:700;}
+  .hero__stat{font-family:var(--font-serif);font-size:var(--size-hero-stat);font-weight:600;line-height:1.1;}
+  .hero__note{font-size:13.5px;opacity:.82;}
+  .hero__cta{width:100%;border:none;background:var(--surface-card);color:var(--primary);font:700 var(--size-body)/1 var(--font-sans);padding:16px;border-radius:var(--radius-input);display:flex;align-items:center;justify-content:center;gap:8px;}
+  .hero--calm{background:var(--bg-canvas);color:var(--text-body);border:1px solid var(--primary);}
+  .hero__label--ink{color:var(--primary);opacity:1;}
+  .hero__stat--ink{color:var(--text-display);}
+  .hero__stat--set{display:flex;align-items:center;gap:9px;}
+  .hero__note--ink{color:var(--text-muted);opacity:1;}
+  .btn--secondary{width:100%;background:var(--surface-card);color:var(--primary);border:1.5px solid var(--line-cool-strong);padding:13px;border-radius:var(--radius-input);font:700 var(--size-body)/1 var(--font-sans);}
+  .card{background:var(--surface-card);border:1px solid var(--border-cool);border-radius:var(--radius-card);box-shadow:var(--shadow-card);}
+  .card--warm{border-color:var(--border-warm);}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px;display:block;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Cards</h1>
+  <p class="sheet__lede">Every card is white-on-cream with a cool hairline and <span class="spec">shadow-card</span>; what separates them is density and what the Dutch word is doing. A WordCard is a specimen — the word at 34px, given room. A SenseCard is a <em>choice</em> — same anatomy at 20px, with its own Add button, so picking one meaning among several costs a single tap.</p>
+
+  <div class="grp">
+    <div class="grp__name">WordCard — one looked-up word, awaiting Add</div>
+    <div class="row" style="gap:26px;align-items:flex-start">
+      <div style="width:340px">
+        <span class="cell__state">With an example</span>
+        <div class="wordcard">
+          <span class="chip chip--de">de</span>
+          <div class="wordcard__word">afspraak</div>
+          <div class="wordcard__gloss">appointment / agreement</div>
+          <div class="wordcard__rule"></div>
+          <div class="eyebrow">In context</div>
+          <div class="quote">Ik heb morgen een afspraak bij de dokter.</div>
+          <div class="wordcard__example-en">I have an appointment at the doctor tomorrow.</div>
+        </div>
+      </div>
+      <div style="width:340px">
+        <span class="cell__state">No example · online fallback</span>
+        <div class="wordcard">
+          <div class="wordcard__word">aanhoudend</div>
+          <div class="wordcard__gloss">persistent / continuous</div>
+        </div>
+        <p class="grp__note" style="margin-top:14px">A gloss from the online dictionary carries no gender and no example, so the card is simply shorter — there is no skeleton and no apology for the missing parts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">SenseCard & DeinflectionCard — the same shape, two different ambiguities</div>
+    <div class="row" style="gap:26px;align-items:flex-start">
+      <div style="width:340px">
+        <span class="cell__state">Sense — one word, several meanings</span>
+        <div class="sensecard">
+          <div class="sensecard__head">
+            <span class="chip chip--de chip--sm">de</span>
+            <span class="sensecard__word">aanslag</span>
+            <span class="sensecard__tag">Tax</span>
+          </div>
+          <div class="sensecard__gloss">tax assessment</div>
+          <div class="sensecard__example">
+            <div class="quote">De aanslag van de gemeente kwam vandaag.</div>
+            <div class="sensecard__example-en">The assessment from the municipality arrived today.</div>
+          </div>
+          <button class="sensecard__btn">Add this meaning</button>
+        </div>
+      </div>
+      <div style="width:340px">
+        <span class="cell__state">Deinflection — one form, two real words</span>
+        <div class="sensecard">
+          <div class="sensecard__head">
+            <span class="chip chip--het chip--sm">het</span>
+            <span class="sensecard__word">slot</span>
+            <span class="sensecard__tag">Plural</span>
+          </div>
+          <div class="sensecard__gloss">lock</div>
+          <div class="sensecard__example">
+            <div class="quote">Het slot van de deur is kapot.</div>
+            <div class="sensecard__example-en">The lock on the door is broken.</div>
+          </div>
+          <button class="sensecard__btn">Add this word</button>
+        </div>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:18px">Identical anatomy on purpose. "sloten" is the plural of both <em>slot</em> (lock) and <em>sloot</em> (ditch), and there is no honest way to pick one — so the ambiguity is handed over in the same shape a multi-sense word already used. The only difference is the button's verb: <strong style="color:var(--text-body)">Add this meaning</strong> versus <strong style="color:var(--text-body)">Add this word</strong>, because one is a sense of the same word and the other is a genuinely different one.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Hero — the dashboard's one card, in two moods</div>
+    <div class="row" style="gap:26px;align-items:flex-start">
+      <div style="width:340px">
+        <span class="cell__state">Work to do</span>
+        <section class="hero">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none" style="position:absolute;right:-14px;bottom:-22px;opacity:.13">
+            <path d="M60 110 V58" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <path d="M60 58 C42 58 36 30 42 16 C48 30 54 32 60 30 C66 32 72 30 78 16 C84 30 78 58 60 58Z" fill="#fff"/>
+            <path d="M60 100 C42 96 30 78 28 56 C50 62 56 78 60 100Z" fill="#fff"/>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:8px;position:relative">
+            <div class="hero__label">Daily practice</div>
+            <div class="hero__stat">You have 8 words ready to review in your deck.</div>
+            <div class="hero__note">🔥 4-day streak</div>
+          </div>
+          <button class="hero__cta" style="position:relative">Start practice</button>
+        </section>
+      </div>
+      <div style="width:340px">
+        <span class="cell__state">All caught up</span>
+        <section class="hero hero--calm">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="hero__label hero__label--ink">Daily practice</div>
+            <div class="hero__stat hero__stat--ink hero__stat--set">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="var(--success-solid)" style="flex-shrink:0"><path d="M10.6 16.6L17.65 9.55L16.25 8.15L10.6 13.8L7.75 10.95L6.35 12.35L10.6 16.6ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"/></svg>
+              You&rsquo;re all set!
+            </div>
+            <div class="hero__note hero__note--ink">Your next review is tomorrow. You have 34 words ready to go. · 🔥 4-day streak</div>
+          </div>
+          <button class="btn--secondary">Prepare in advance</button>
+        </section>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:18px">The calm variant inverts the whole card — cream surface, primary <em>outline</em>, dark text — rather than dimming the blue one. A finished state should read as rest, not as a disabled call to action, and practising ahead is offered as a secondary button because it genuinely is optional.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">StatCard & plain card</div>
+    <div class="row" style="gap:26px;align-items:flex-start">
+      <div style="width:340px">
+        <span class="cell__state">Session report tiles</span>
+        <div style="display:flex;gap:12px">
+          <div class="stat-card"><div class="stat-card__value" style="color:var(--success-fg)">6</div><div class="stat-card__label">Knew it</div></div>
+          <div class="stat-card"><div class="stat-card__value" style="color:var(--error-fg)">2</div><div class="stat-card__label">To review</div></div>
+        </div>
+      </div>
+      <div style="width:340px">
+        <span class="cell__state">card · card--warm</span>
+        <div class="card card--warm" style="padding:20px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;color:var(--text-muted)">Words in the dictionary</span>
+            <span style="font-family:var(--font-serif);font-weight:600;color:var(--text-display)">14,193</span>
+          </div>
+          <div style="height:1px;background:var(--line-divider);margin:12px 0"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:14px;color:var(--text-muted)">Words in your deck</span>
+            <span style="font-family:var(--font-serif);font-weight:600;color:var(--text-display)">34</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:16px">StatCards break the radius system on purpose — 18px, between chip and card — because they sit in a pair and read as one object. <span class="spec">card--warm</span> swaps the cool hairline for cream: settings surfaces sit on the canvas, not over content.</p>
+  </div>
+</div>

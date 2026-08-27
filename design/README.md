@@ -61,3 +61,13 @@ one-off tweak without touching Figma, you can also just hand-edit
 Create the variable in Figma **first** (with WEB code syntax `var(--your-name)`),
 re-export the JSON, then `npm run tokens`. Never add a token only in code — it
 would be overwritten on the next regenerate.
+
+## See also — the design canvas
+
+[`design/canvas/`](./canvas/README.md) publishes the whole system as a browsable
+canvas: the token layer above rendered as swatches and specimens, every
+component with its real states, and the ten screens. It is a *view* of what
+ships — its component sheets render a verbatim copy of `src/styles/app.css`, so
+it cannot silently disagree with the app — and it is **not** part of the build.
+Nothing there feeds back into Figma or into `tokens.json`; this file still
+describes the only path token values travel.

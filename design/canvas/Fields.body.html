@@ -1,0 +1,112 @@
+<style>
+  .text-input{width:100%;border:1.5px solid var(--line-cool-strong);border-radius:14px;background:var(--surface-card);font-family:var(--font-serif);font-size:20px;color:var(--text-display);padding:15px 16px;outline:none;}
+  .text-input.is-placeholder{color:var(--ink-300);}
+  .text-input.is-focus{border-color:var(--primary);}
+  .auth-field{display:flex;flex-direction:column;gap:6px;}
+  .auth-field__label{font:700 var(--size-label)/1 var(--font-sans);text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--text-faint);margin-left:2px;}
+  .auth-field .text-input{font-family:var(--font-sans);font-size:16px;}
+  .appbar__search{display:flex;align-items:center;gap:var(--space-2);background:var(--surface-card);border:1px solid var(--border-cool);border-radius:var(--radius-button);padding:var(--space-3) var(--space-4);box-shadow:var(--shadow-field);}
+  .appbar__search.is-active{border-color:var(--primary-border);}
+  .appbar__search > svg{flex-shrink:0;color:var(--primary);}
+  .appbar__search .val{flex:1;min-width:0;font-size:var(--size-body);line-height:1.55;color:var(--text-muted);}
+  .appbar__search .ph{flex:1;min-width:0;font-size:var(--size-body);line-height:1.55;color:var(--text-faint);}
+  .appbar__clear{flex-shrink:0;display:flex;border:none;background:transparent;padding:0;color:var(--primary);}
+  .auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-faint);font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+  .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line-divider);}
+  .progress{flex:1;height:8px;background:var(--line-cool);border-radius:6px;overflow:hidden;}
+  .progress__fill{height:100%;background:var(--primary);border-radius:6px;}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:block;}
+  .col{width:340px;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Fields & progress</h1>
+  <p class="sheet__lede">Two input treatments, split by what is being typed. The word field is <strong style="color:var(--text-body)">Spectral at 20px</strong> — you are typing Dutch, so it is set like Dutch. Account fields drop to Hanken Grotesk at 16 for the same reason a label does: an email address is not the language being learned.</p>
+
+  <div class="grp">
+    <div class="grp__name">Word field — serif, 20px</div>
+    <div class="row" style="gap:26px">
+      <div class="col"><span class="cell__state">Empty · placeholder</span><div class="text-input is-placeholder">Plak of typ hier tekst…</div></div>
+      <div class="col"><span class="cell__state">Filled</span><div class="text-input">afspraak</div></div>
+      <div class="col"><span class="cell__state">Focus · primary border</span><div class="text-input is-focus">afspraak</div></div>
+    </div>
+    <div class="row" style="gap:10px;margin-top:14px">
+      <span class="spec">border 1.5px line-cool-strong → primary on focus</span><span class="spec">·</span><span class="spec">radius 14px</span><span class="spec">·</span><span class="spec">padding 15 / 16</span>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Account field — sans, 16px, labelled</div>
+    <div class="row" style="gap:26px">
+      <div class="col">
+        <span class="cell__state">Default</span>
+        <label class="auth-field">
+          <span class="auth-field__label">Email</span>
+          <div class="text-input is-placeholder">you@example.com</div>
+        </label>
+      </div>
+      <div class="col">
+        <span class="cell__state">Filled</span>
+        <label class="auth-field">
+          <span class="auth-field__label">Confirmation code</span>
+          <div class="text-input">482051</div>
+        </label>
+      </div>
+      <div class="col">
+        <span class="cell__state">Focus</span>
+        <label class="auth-field">
+          <span class="auth-field__label">Password</span>
+          <div class="text-input is-focus">••••••••••</div>
+        </label>
+      </div>
+    </div>
+    <div style="max-width:340px;margin-top:8px">
+      <div class="auth-divider"><span>or</span></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Search field — lives inside the appbar</div>
+    <div class="stack" style="gap:18px;max-width:400px">
+      <div>
+        <span class="cell__state">Empty</span>
+        <form class="appbar__search">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="ph">Search a Dutch word</span>
+        </form>
+      </div>
+      <div>
+        <span class="cell__state">Active · clear button appears</span>
+        <form class="appbar__search is-active">
+          <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M14 14l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="val">sloten</span>
+          <button class="appbar__clear"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg></button>
+        </form>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:16px">The only field carrying a shadow (<span class="spec">shadow-field</span>, 0 2 9 at .05) — it sits directly on the canvas rather than inside a card, so it needs a hairline of its own lift to separate from it.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Session progress</div>
+    <div class="stack" style="gap:16px;max-width:400px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <button style="width:38px;height:38px;padding:0;border-radius:14px;border:1.5px solid var(--line-cool-strong);background:var(--surface-card);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg></button>
+        <span class="progress"><span class="progress__fill" style="width:0%"></span></span>
+        <span style="font-size:13px;font-weight:700;color:var(--text-faint)">0/8</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <button style="width:38px;height:38px;padding:0;border-radius:14px;border:1.5px solid var(--line-cool-strong);background:var(--surface-card);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg></button>
+        <span class="progress"><span class="progress__fill" style="width:37.5%"></span></span>
+        <span style="font-size:13px;font-weight:700;color:var(--text-faint)">3/8</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <button style="width:38px;height:38px;padding:0;border-radius:14px;border:1.5px solid var(--line-cool-strong);background:var(--surface-card);color:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z"/></svg></button>
+        <span class="progress"><span class="progress__fill" style="width:100%"></span></span>
+        <span style="font-size:13px;font-weight:700;color:var(--text-faint)">8/8</span>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:16px">The denominator counts <em>distinct words in the session</em>, never cards queued — a missed card is re-queued for another try, and if that grew the denominator, missing a word would read as "the session just got longer". The bar holds still instead: that word simply isn't finished yet.</p>
+  </div>
+</div>

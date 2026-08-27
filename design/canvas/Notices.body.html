@@ -1,0 +1,59 @@
+<style>
+  .notice{border-radius:var(--radius-input);padding:14px 16px;display:flex;align-items:center;gap:var(--space-3);font-family:var(--font-sans);font-size:var(--size-body);font-weight:700;line-height:1.55;}
+  .notice__icon{width:24px;height:24px;flex-shrink:0;}
+  .notice--error{background:var(--error-bg);border:1px solid var(--error-border);color:var(--error-fg);}
+  .notice--caution{background:var(--caution-bg);border:1px solid var(--caution-border);color:var(--caution-fg);}
+  .notice--success{background:var(--success-bg);border:1px solid var(--success-border);color:var(--success-fg);}
+  .notice--info{background:var(--surface-tint);border:1px solid var(--primary-border);color:var(--primary);}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:block;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Notices</h1>
+  <p class="sheet__lede">One banner, four tones, each pulling its wash, border and foreground from a single status family — so a notice is never assembled by hand. The icon inherits <span class="spec">currentColor</span> from the variant's foreground token, which is why none of them carries a colour of its own.</p>
+
+  <div class="grp">
+    <div class="grp__name">The four tones</div>
+    <div class="stack" style="gap:22px;max-width:460px">
+      <div>
+        <span class="cell__state">success — something landed</span>
+        <div class="notice notice--success">
+          <svg class="notice__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M10.6 16.6L17.65 9.55L16.25 8.15L10.6 13.8L7.75 10.95L6.35 12.35L10.6 16.6ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"/></svg>
+          <span><strong>afspraak</strong> added to your deck · 3 words this visit</span>
+        </div>
+      </div>
+      <div>
+        <span class="cell__state">info — a neutral fact, not an alarm</span>
+        <div class="notice notice--info">
+          <svg class="notice__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11 17H13V11H11V17ZM12 9C12.2833 9 12.5208 8.90417 12.7125 8.7125C12.9042 8.52083 13 8.28333 13 8C13 7.71667 12.9042 7.47917 12.7125 7.2875C12.5208 7.09583 12.2833 7 12 7C11.7167 7 11.4792 7.09583 11.2875 7.2875C11.0958 7.47917 11 7.71667 11 8C11 8.28333 11.0958 8.52083 11.2875 8.7125C11.4792 8.90417 11.7167 9 12 9ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"/></svg>
+          <span>You already have this word in your deck</span>
+        </div>
+      </div>
+      <div>
+        <span class="cell__state">caution — nothing broke, but nothing was found</span>
+        <div class="notice notice--caution">
+          <svg class="notice__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12.7125 16.7125C12.9042 16.5208 13 16.2833 13 16C13 15.7167 12.9042 15.4792 12.7125 15.2875C12.5208 15.0958 12.2833 15 12 15C11.7167 15 11.4792 15.0958 11.2875 15.2875C11.0958 15.4792 11 15.7167 11 16C11 16.2833 11.0958 16.5208 11.2875 16.7125C11.4792 16.9042 11.7167 17 12 17C12.2833 17 12.5208 16.9042 12.7125 16.7125ZM11 13H13V7H11V13ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"/></svg>
+          <span>We couldn&rsquo;t find &ldquo;afsprak&rdquo;</span>
+        </div>
+      </div>
+      <div>
+        <span class="cell__state">error — something failed and can be retried</span>
+        <div class="notice notice--error">
+          <svg class="notice__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8.4 17L12 13.4L15.6 17L17 15.6L13.4 12L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4L10.6 12L7 15.6L8.4 17ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z"/></svg>
+          <span>The online dictionary didn&rsquo;t respond. Check your connection and try again.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Which tone, and when</div>
+    <p class="grp__note" style="max-width:74ch"><strong style="color:var(--success-fg)">Success</strong> confirms an action the user just took, and is the only tone that ever carries a bold word inside it (the word that was added).<br><br><strong style="color:var(--primary)">Info</strong> exists so that "you already have this" doesn't have to borrow caution's yellow. It is a fact about the deck, not a warning — the blue keeps it calm.<br><br><strong style="color:var(--caution-fg)">Caution</strong> is for a dead end that isn't a failure: the lookup ran, and the word genuinely isn't there. It appears with the fuzzy suggestions beneath it, never alone.<br><br><strong style="color:var(--error-fg)">Error</strong> is reserved for something that actually broke and can be retried — a failed request, a rejected code. It is always paired with a retry control; an error the user can only read is a caution.</p>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Body copy is bold on purpose</div>
+    <p class="grp__note" style="max-width:74ch">Every notice is set in <span class="spec">700 / 16px / 1.55</span> — heavier than surrounding body text. At these wash opacities a regular weight loses too much contrast against the tinted background, and the banner stops reading as a distinct object. The 24px icon and 12px gap are fixed for all four so a stack of mixed tones keeps one text baseline.</p>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<style>
+  .chip{padding:4px 12px;border-radius:var(--radius-chip);font-weight:700;font-size:14px;display:inline-block;}
+  .chip--de{background:var(--primary);color:var(--cream-000);}
+  .flashcard__face{width:300px;min-height:360px;background:var(--surface-card);border:1px solid var(--border-cool);border-radius:var(--radius-card-lg);box-shadow:var(--shadow-float);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3);padding:28px;text-align:center;}
+  .flashcard__face--back{background:var(--surface-tint);border-color:var(--primary-border);}
+  .flashcard__word{font-family:var(--font-serif);font-size:var(--size-word-hero);font-weight:600;color:var(--text-display);line-height:1.1;}
+  .flashcard__example{font-family:var(--font-serif);font-style:italic;font-size:var(--size-body);line-height:1.5;color:var(--text-muted);}
+  .flashcard__hint{color:var(--text-faint);font-size:var(--size-label);font-weight:600;letter-spacing:.04em;}
+  .flashcard__met-in{display:flex;flex-direction:column;gap:3px;}
+  .flashcard__met-in-label{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint);}
+  .divider-rule{width:60px;height:1px;flex-shrink:0;background:var(--blue-200);}
+  .eyebrow{font:700 var(--size-label)/1 var(--font-sans);text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--text-faint);}
+  .btn{border:none;border-radius:var(--radius-input);font:700 var(--size-body)/1 var(--font-sans);padding:15px;display:flex;align-items:center;justify-content:center;gap:var(--space-2);flex:1;}
+  .btn--difficult{border:1.5px solid var(--error-border);background:var(--surface-card);color:var(--error-fg);}
+  .btn--success{background:var(--success-solid);color:var(--cream-000);box-shadow:var(--shadow-success);}
+  .btn--primary{background:var(--primary);color:var(--on-primary);box-shadow:var(--shadow-primary);border-radius:var(--radius-button);padding:17px;width:100%;}
+  .cell__state{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;display:block;}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Components</p>
+  <h1 class="sheet__title">Flashcard</h1>
+  <p class="sheet__lede">The only element in the app on <span class="spec">radius-card-lg</span> (24px) and <span class="spec">shadow-float</span> — it is meant to read as an object you could pick up, not as a panel. Both faces are stacked in one grid cell so the card sizes to the taller one and the pair flips together on a 480ms Y rotation.</p>
+
+  <div class="grp">
+    <div class="grp__name">The two faces</div>
+    <div class="row" style="gap:40px;align-items:flex-start">
+      <div>
+        <span class="cell__state">Front — Dutch, cream surface</span>
+        <div class="flashcard__face">
+          <span class="chip chip--de">de</span>
+          <div class="flashcard__word">hond</div>
+          <div class="divider-rule"></div>
+          <div class="flashcard__example">De hond rent door het park.</div>
+          <div class="divider-rule"></div>
+          <div class="flashcard__met-in">
+            <div class="flashcard__met-in-label">Where you met it</div>
+            <div class="flashcard__example">De hond loopt in de tuin.</div>
+          </div>
+          <div class="flashcard__hint">Tap to flip</div>
+        </div>
+      </div>
+      <div>
+        <span class="cell__state">Back — English, blue surface</span>
+        <div class="flashcard__face flashcard__face--back">
+          <span class="chip chip--de">de</span>
+          <div class="flashcard__word">dog</div>
+          <div class="divider-rule"></div>
+          <div class="flashcard__example">The dog runs through the park.</div>
+          <div class="flashcard__hint">Tap to flip</div>
+        </div>
+      </div>
+      <div style="max-width:250px;padding-top:34px">
+        <div class="caption">Why the back is blue</div>
+        <p class="grp__note" style="margin-top:8px">Cream front, <span class="spec">surface-tint</span> back with a <span class="spec">primary-border</span> hairline. Mid-flip the surface change is the first thing visible — you know which side you are on before you can read a word of it. The gender chip is repeated on both faces so it never disappears mid-answer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Front variants</div>
+    <div class="row" style="gap:32px;align-items:flex-start">
+      <div>
+        <span class="cell__state">No example</span>
+        <div class="flashcard__face">
+          <span class="chip chip--de">de</span>
+          <div class="flashcard__word">aanhoudend</div>
+          <div class="flashcard__hint">Tap to flip</div>
+        </div>
+      </div>
+      <div>
+        <span class="cell__state">Dictionary example only</span>
+        <div class="flashcard__face">
+          <span class="chip chip--de">de</span>
+          <div class="flashcard__word">afspraak</div>
+          <div class="divider-rule"></div>
+          <div class="flashcard__example">Ik heb morgen een afspraak bij de dokter.</div>
+          <div class="flashcard__hint">Tap to flip</div>
+        </div>
+      </div>
+      <div style="max-width:250px;padding-top:34px">
+        <div class="caption">Two sentences, kept apart</div>
+        <p class="grp__note" style="margin-top:8px">When a word was captured from pasted reading it carries its own source sentence, which sits <em>beneath</em> the dictionary's example behind its own labelled rule. Both are Dutch, both italic — the label is what stops them merging into one block.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Grading is sequenced, not offered</div>
+    <div class="row" style="gap:34px;align-items:flex-start">
+      <div style="width:300px">
+        <span class="cell__state">Before the flip</span>
+        <div class="eyebrow" style="display:block;text-align:center;margin-bottom:12px">Do you know this word?</div>
+        <button class="btn btn--primary">Show translation</button>
+      </div>
+      <div style="width:300px">
+        <span class="cell__state">After the flip</span>
+        <div class="eyebrow" style="display:block;text-align:center;margin-bottom:12px">Translation</div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn--difficult">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#B5462F" stroke-width="2" stroke-linecap="round"/></svg>
+            Still learning
+          </button>
+          <button class="btn btn--success">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            I knew it
+          </button>
+        </div>
+      </div>
+      <div style="width:230px">
+        <span class="cell__state">Repeat card</span>
+        <div class="eyebrow" style="display:block;text-align:center;margin-bottom:12px">One more try</div>
+        <p class="grp__note">The eyebrow is the card's whole state machine: it asks a question before the flip, names the side after it, and says <em>One more try</em> when a missed word comes back around — so a re-queued card explains itself instead of looking like a bug.</p>
+      </div>
+    </div>
+    <p class="grp__note" style="margin-top:18px">The grade buttons do not exist until the answer is on screen. Both used to be live under an unflipped card next to a question asking whether you knew the word — which invites answering a card you haven't tried to recall, and quietly turns self-assessment into guesswork. Revealing first is what makes the grade mean anything; the card still flips on tap, this is the same gesture given a label.</p>
+  </div>
+</div>

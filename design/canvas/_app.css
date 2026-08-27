@@ -1,0 +1,1463 @@
+/* Woordkast component layer — copied verbatim from src/styles/app.css by
+   design/sync-app-css.mjs. Do not hand-edit: re-run the sync instead. The only
+   changes are the removed token @imports (design/_tokens.css carries those)
+   and the app-shell/phone rules, which are re-stated below for an artboard
+   that IS the phone rather than a viewport containing one. */
+.app-shell{display:flex;align-items:center;justify-content:center;}
+.phone{position:relative;width:100%;height:100%;background:var(--bg-canvas);overflow:hidden;display:flex;flex-direction:column;}
+/* Woordkast app styles — Delft Blue.
+   Color/spacing/radius/grid/size tokens come from tokens.json, applied as
+   CSS custom properties on :root at runtime — see src/lib/applyTokens.ts
+   (called from main.tsx, before this stylesheet's rules are ever painted). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* Deep porcelain gallery canvas behind the phone frame on desktop. */
+  background: var(--bg-canvas-deep);
+  font-family: var(--font-sans);
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+
+/* ── Splash — the branded opening beat (Access flow, Figma 228:1789) ──
+   A full-screen copy of the app shell stacked above the app; the medallion
+   and wordmark rise-and-fade in, then the whole overlay fades out to reveal
+   whatever the app shows first (sign-in gate or home). */
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  transition: opacity 450ms var(--ease-standard);
+}
+.splash-overlay--out {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-phone {
+  align-items: center;
+  justify-content: center;
+}
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.splash-medallion {
+  animation: splash-rise 700ms var(--ease-standard) both;
+}
+.splash-wordmark {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--text-display);
+  animation: splash-rise 700ms var(--ease-standard) 180ms both;
+}
+@keyframes splash-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The scrolling content region of a screen. */
+.screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--bg-canvas);
+}
+
+.screen__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Container transform (Material) — the button's container grows into the
+   screen it opens. The wrapper carries the button's blue and is revealed by
+   a circle expanding from where it was tapped (measured at click time, see
+   lib/expandOrigin); the page then cross-fades in on top of that blue.
+
+   The blue matters: both screens sit on the same cream, so a plain clip
+   reveal would be invisible. Growing the container's colour is what makes
+   the motion legible — and it's what Material actually does.
+
+   Easing is deliberately not the decelerate used elsewhere: that curve is
+   ~40% expanded within a few frames, which skips the growing shape almost
+   entirely. The symmetric curve lets it be seen. ── */
+.screen-expand {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary);
+  animation: screen-expand var(--motion-expand) cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+/* The page is opaque, so as it fades up it hides the blue beneath — one
+   clean cross-fade rather than two stacked translucent layers. */
+.screen-expand > * {
+  animation: screen-expand-content var(--motion-expand) var(--ease-standard) both;
+}
+
+@keyframes screen-expand {
+  from {
+    clip-path: circle(30px at var(--expand-x) var(--expand-y));
+  }
+  to {
+    clip-path: circle(var(--expand-r) at var(--expand-x) var(--expand-y));
+  }
+}
+@keyframes screen-expand-content {
+  0%,
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-expand,
+  .screen-expand > * {
+    animation: none;
+  }
+  .screen-expand {
+    background: none;
+  }
+}
+
+.pad-top {
+  padding-top: max(54px, env(safe-area-inset-top));
+}
+
+.gutter {
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+/* ── Wordmark / header ── */
+.brandrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: var(--tracking-wordmark);
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.display {
+  font: var(--type-display);
+  color: var(--text-display);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.display--lg {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--size-word-hero);
+  line-height: 1.06;
+  color: var(--text-display);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.title-serif {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--size-title-serif);
+  color: var(--text-display);
+  margin: 0;
+}
+
+.eyebrow {
+  font: var(--type-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+.faint {
+  color: var(--text-faint);
+}
+
+/* ── Buttons ──
+   States: default · hover · pressed (:active) · focus-visible · disabled.
+   Transitions animate background / border / shadow / colour / transform with
+   short Material-inspired easing. */
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius-button);
+  font: var(--type-button);
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition:
+    background var(--motion-base) var(--ease-standard),
+    border-color var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard),
+    color var(--motion-base) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-emphasized);
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-100);
+}
+/* Snappy press: the pressed state appears quickly, then eases back on release. */
+.btn:active {
+  transition-duration: var(--motion-fast);
+}
+
+/* primary — contained, lifts on hover, depresses + lowers shadow on press */
+.btn--primary {
+  background: var(--semantic-button-default);
+  color: var(--semantic-button-onbutton-default);
+  box-shadow: var(--shadow-primary);
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
+}
+.btn--primary:active {
+  transform: translateY(1px);
+  background: var(--semantic-button-pressed-strong);
+  box-shadow: var(--shadow-pressed);
+}
+.btn--primary:focus-visible {
+  box-shadow: var(--shadow-primary), 0 0 0 3px var(--blue-100);
+}
+
+/* secondary — outlined. Hover lifts (keeps the white surface) so the PRESSED
+   state — a distinct surface-tint fill per the design — is clearly visible. */
+.btn--secondary {
+  background: var(--semantic-surface-subdle);
+  color: var(--semantic-button-outline-default);
+  border: 1.5px solid var(--line-cool-strong);
+  box-shadow: none;
+  padding: 13px;
+  border-radius: var(--radius-input);
+}
+.btn--secondary:hover {
+  transform: translateY(-1px);
+}
+.btn--secondary:active {
+  background: var(--semantic-button-pressed-light);
+  transform: translateY(1px);
+}
+
+/* success — contained (Practice "I knew it"), side-by-side with .btn--difficult/.btn--still */
+.btn--success {
+  flex: 1;
+  padding: 15px;
+  border-radius: var(--radius-input);
+  background: var(--semantic-success-success-default);
+  color: var(--semantic-success-onsuccess-default);
+  box-shadow: var(--shadow-success);
+}
+.btn--success:hover {
+  transform: translateY(-1px);
+}
+.btn--success:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+}
+
+/* difficult — outlined error (Practice "Still learning"; Figma type=difficult) */
+.btn--difficult {
+  flex: 1;
+  padding: 15px;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--semantic-error-outline-default);
+  background: var(--semantic-surface-subdle);
+  color: var(--semantic-error-onerror-default);
+  box-shadow: none;
+}
+.btn--difficult:hover {
+  background: var(--semantic-error-error-default);
+}
+.btn--difficult:active {
+  background: var(--semantic-error-error-default);
+  transform: translateY(1px);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card--warm {
+  border-color: var(--border-warm);
+}
+
+/* Daily-practice hero card */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-card);
+  padding: 20px 21px;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero__label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  font-weight: 700;
+}
+
+.hero__stat {
+  font-family: var(--font-serif);
+  font-size: var(--size-hero-stat);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hero__note {
+  font-size: 13.5px;
+  opacity: 0.82;
+}
+
+/* Calm variant — the "all caught up" state: cream card with primary outline
+   and dark text, so it reads as a rest state rather than a call to act
+   (Figma 163:334). */
+.hero--calm {
+  background: var(--semantic-surface-default);
+  color: var(--text-body);
+  border: 1px solid var(--primary);
+}
+.hero__label--ink {
+  color: var(--primary);
+  opacity: 1;
+}
+.hero__stat--ink {
+  color: var(--text-display);
+}
+.hero__stat--set {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.hero__check {
+  color: var(--success-solid);
+  flex-shrink: 0;
+}
+.hero__note--ink {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.hero__cta {
+  width: 100%;
+  border: none;
+  background: var(--surface-card);
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--size-body);
+  padding: 16px;
+  border-radius: var(--radius-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background var(--motion-base) var(--ease-standard),
+    transform var(--motion-base) var(--ease-standard);
+}
+
+.hero__cta:active {
+  background: var(--surface-tint);
+  transform: translateY(1px);
+  transition-duration: var(--motion-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta {
+    transition: none;
+  }
+  .hero__cta:active {
+    transform: none;
+  }
+}
+
+/* ── Word rows ── */
+.wordlist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Card holds the top row and, when opened, the in-context block below it. */
+.wordrow {
+  width: 100%;
+  text-align: left;
+  background: var(--surface-card);
+  border: 1px solid var(--border-warm);
+  border-radius: var(--radius-button);
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.wordrow__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+/* main = chevron toggle on the left + the word column (Figma 104:161). */
+.wordrow__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* content = chip stacked over the dutch word, gloss beneath. */
+.wordrow__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-2);
+}
+
+.wordrow__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  max-width: 100%;
+}
+
+.wordrow__dutch {
+  min-width: 0;
+  max-width: 100%;
+  font-family: var(--font-serif);
+  font-size: var(--size-word-row);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--text-display);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wordrow__gloss {
+  font-size: var(--size-body-sm);
+  color: var(--ink-500);
+}
+
+/* ── WordRowCompact — single-line, read-only word row (Figma 154:623) ── */
+.wordrow-compact {
+  width: 100%;
+  background: var(--surface-card);
+  border: 1px solid var(--border-warm);
+  border-radius: var(--radius-button);
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.wordrow-compact__dutch {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--size-word-row);
+  color: var(--text-display);
+}
+.wordrow-compact__gloss {
+  font-size: var(--size-body-sm);
+  color: var(--ink-500);
+}
+
+/* ── StatCard — big number + label tile (Figma 154:604, "Card") ── */
+.stat-card {
+  flex: 1;
+  background: var(--surface-card);
+  border: 1px solid var(--border-warm);
+  border-radius: 18px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.stat-card__value {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--size-word-hero);
+  line-height: 1.1;
+}
+.stat-card__value--success {
+  color: var(--success-fg);
+}
+.stat-card__value--error {
+  color: var(--error-fg);
+}
+.stat-card__label {
+  font-weight: 700;
+  font-size: var(--size-body);
+  color: var(--text-faint);
+}
+
+/* ── Badge — icon + label pill (Figma 155:353) ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: var(--semantic-success-success-subdle);
+  color: var(--semantic-success-onsuccess-strong);
+  font-weight: 700;
+  font-size: 12.5px;
+}
+.badge svg {
+  color: var(--semantic-success-onsuccess-strong);
+}
+
+/* ── Mastery bar — word confidence (Figma 114:202) ──
+   Track tint + fill colour change per level; fill width = progress to mastery. */
+/* Meter = bar + level label, stacked and centred (WordRow, Figma 104:161). */
+.mastery-meter {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+.mastery-meter__label {
+  font-family: var(--font-sans);
+  font-size: var(--size-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-body);
+}
+
+.mastery {
+  flex-shrink: 0;
+  display: inline-block;
+  width: 32px;
+  height: 8px;
+  border-radius: var(--radius-chip);
+  overflow: hidden;
+}
+.mastery__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-chip);
+  transition: width var(--motion-base) var(--ease-standard);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mastery__fill {
+    transition: none;
+  }
+}
+.mastery--weak {
+  background: var(--ink-300);
+}
+.mastery--weak .mastery__fill {
+  background: var(--mastery-new-weak-medium);
+}
+.mastery--medium {
+  background: var(--caution-bg);
+}
+.mastery--medium .mastery__fill {
+  background: var(--caution-solid);
+}
+.mastery--mastering,
+.mastery--mastered {
+  background: var(--success-bg);
+}
+.mastery--mastering .mastery__fill,
+.mastery--mastered .mastery__fill {
+  background: var(--mastery-masterd);
+}
+
+/* ── Opened (pressed) state: in-context example inside the same card ── */
+.wordrow__context {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.wordrow__rule {
+  align-self: stretch;
+  height: 1px;
+  background: var(--border-cool);
+}
+.wordrow__example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.wordrow__example-nl {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--size-body);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.wordrow__example-en {
+  font-size: var(--size-body);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.text-input {
+  width: 100%;
+  border: 1.5px solid var(--line-cool-strong);
+  border-radius: 14px;
+  background: var(--surface-card);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--text-display);
+  padding: 15px 16px;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+.text-input::placeholder {
+  color: var(--ink-300);
+}
+.text-input:focus {
+  border-color: var(--primary);
+}
+
+/* ── Auth (sign in / create account) ── */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.auth-field__label {
+  font: var(--type-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+  margin-left: 2px;
+}
+.auth-field .text-input {
+  font-family: var(--font-sans);
+  font-size: 16px;
+}
+/* "or" rule between email and Google sign-in */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--text-faint);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line-divider);
+}
+
+/* Signed-in account row in Settings */
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.account-avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--cream-000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* ── Gender / pos chips & notices ── */
+.chip {
+  padding: 4px 12px; /* Figma 59:11 — space-1 / space-3 */
+  border-radius: var(--radius-chip);
+  font-weight: 700;
+  font-size: 14px;
+}
+.chip--de {
+  background: var(--primary);
+  color: var(--cream-000);
+}
+.chip--het {
+  background: var(--cream-000);
+  color: var(--primary);
+  box-shadow: inset 0 0 0 1.6px var(--primary);
+}
+.chip--sm {
+  padding: 4px 12px; /* Figma 59:11 — space-1 / space-3 */
+  font-size: 13px;
+}
+
+.notice {
+  border-radius: var(--radius-input);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  /* UI/Body Bold */
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  font-weight: 700;
+  line-height: 1.55;
+}
+.notice__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.notice--error {
+  background: var(--semantic-error-error-default);
+  border: 1px solid var(--semantic-error-outline-default);
+  color: var(--semantic-error-onerror-default);
+}
+.notice--caution {
+  background: var(--semantic-warning-warning-default);
+  border: 1px solid var(--semantic-warning-outline-default);
+  color: var(--semantic-warning-onwarning-default);
+}
+.notice--success {
+  background: var(--semantic-success-success-subdle);
+  border: 1px solid var(--semantic-success-outline-default);
+  color: var(--semantic-success-onsuccess-strong);
+}
+/* info — neutral fact, not an alarm (e.g. word already in the deck) */
+.notice--info {
+  background: var(--surface-tint);
+  border: 1px solid var(--primary-border);
+  color: var(--primary);
+}
+
+/* ── Top bar for focused flows ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 20px 4px;
+}
+
+/* ── Appbar (Figma 250:2597) — title row plus an optional search field. The
+   search slot only renders when a screen asks for it. ── */
+.appbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  padding-top: max(var(--space-7), env(safe-area-inset-top));
+  background: var(--bg-canvas);
+}
+.appbar--divider {
+  border-bottom: 1px solid var(--border-warm);
+}
+.appbar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.appbar__title {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: var(--size-hero-stat);
+  line-height: 1.1;
+}
+/* Balances a lone back button so the title stays optically centred. */
+.appbar__spacer {
+  width: 38px;
+  flex-shrink: 0;
+}
+.appbar__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-button);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-field);
+  transition: border-color 0.12s ease;
+}
+.appbar__search--active,
+.appbar__search:focus-within {
+  border-color: var(--primary-border);
+}
+.appbar__search > svg {
+  flex-shrink: 0;
+  color: var(--primary);
+}
+.appbar__search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--size-body);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+.appbar__search input::placeholder {
+  color: var(--text-faint);
+}
+.appbar__clear {
+  flex-shrink: 0;
+  display: flex;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: var(--primary);
+}
+
+/* ── IconButton (add · close · remove) — default / pressed / success ──
+   Merged from the former IconButton + AddButton (Figma node 61:22). */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: var(--radius-input);
+  border: 1.5px solid var(--line-cool-strong);
+  background: var(--surface-card);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background var(--motion-base) var(--ease-standard),
+    border-color var(--motion-base) var(--ease-standard),
+    color var(--motion-base) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-emphasized);
+}
+/* Pressed (secondary): surface-tint fill, keeps the cool border. */
+.icon-btn:active {
+  transform: scale(0.94);
+  background: var(--surface-tint);
+}
+.icon-btn svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+/* no-background variant: transparent until pressed, then surface-tint, no border. */
+.icon-btn--ghost {
+  background: none;
+  border-color: transparent;
+}
+.icon-btn--ghost:active {
+  background: var(--surface-tint);
+}
+/* expand: chevron flips to point up when its row is open. */
+.icon-btn--expand svg {
+  transition: transform var(--motion-base) var(--ease-standard);
+}
+.icon-btn--expand[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-btn--expand svg {
+    transition: none;
+  }
+}
+/* success (added): solid green chip with a light check, the check pops in. */
+.icon-btn--success {
+  background: var(--semantic-success-success-default);
+  border-color: var(--semantic-success-success-default);
+  color: var(--semantic-success-onsuccess-default);
+}
+.icon-btn--success svg {
+  animation: icon-btn-check-pop var(--motion-base) var(--ease-emphasized);
+}
+@keyframes icon-btn-check-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-btn--success svg {
+    animation: none;
+  }
+}
+
+.progress {
+  flex: 1;
+  height: 8px;
+  background: var(--line-cool);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 6px;
+  transition: width 0.25s ease;
+}
+
+/* ── Bottom navigation (Figma 251:3389) — a floating pill of tabs, with an
+   optional FAB alongside it that opens the Add-a-word flow. ── */
+.bottomnav {
+  display: flex;
+  align-items: center;
+  /* No `gap` — the FAB owns its own leading margin, so that space can
+     collapse with it when it hides (see .fab--hidden). */
+  padding: var(--space-5);
+  padding-bottom: max(var(--space-5), env(safe-area-inset-bottom));
+}
+.bottomnav__pill {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-2) var(--space-6);
+}
+.tab {
+  flex: 1;
+  min-width: 56px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 6px 0;
+  color: var(--inactive);
+  font-size: var(--size-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+}
+.tab svg {
+  width: 24px;
+  height: 24px;
+}
+.tab--active {
+  color: var(--primary);
+}
+
+/* ── Floating add button ──
+   Width/margin animate so the pill beside it (flex:1) grows and shrinks in
+   step; the icon is clipped rather than squashed while that happens. */
+.fab {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  /* Zeroed so `width: 0` can actually reach 0 when hidden — border-box
+     clamps width up to the padding sum otherwise. */
+  padding: 0;
+  margin-left: var(--space-2);
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  box-shadow: var(--shadow-fab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    width var(--motion-nav) var(--ease-standard),
+    margin-left var(--motion-nav) var(--ease-standard),
+    opacity var(--motion-nav) var(--ease-standard),
+    transform var(--motion-nav) var(--ease-emphasized),
+    background var(--motion-base) var(--ease-standard);
+}
+.fab:active {
+  background: var(--primary-press);
+  transform: scale(0.94);
+  transition-duration: var(--motion-fast);
+}
+.fab svg {
+  flex-shrink: 0;
+  transition: transform var(--motion-nav) var(--ease-emphasized);
+}
+
+.fab--hidden {
+  width: 0;
+  margin-left: 0;
+  opacity: 0;
+  transform: scale(0.4);
+  box-shadow: none;
+  pointer-events: none;
+}
+/* The + spins away as it goes, so the exit reads as deliberate. */
+.fab--hidden svg {
+  transform: rotate(-90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .fab svg {
+    transition: none;
+  }
+  .fab--hidden svg {
+    transform: none;
+  }
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--size-body);
+  color: var(--ink-quote);
+  line-height: 1.5;
+}
+
+/* ── WordCard — a looked-up word awaiting "Add to deck" (Figma 249:2276) ── */
+.wordcard {
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+.wordcard__word {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.05;
+  color: var(--text-display);
+  margin-top: 4px;
+}
+.wordcard__gloss {
+  font-size: 18px;
+  color: var(--primary);
+}
+.wordcard__rule {
+  height: 1px;
+  width: 100%;
+  background: var(--line-divider);
+  margin: 11px 0 4px;
+}
+.wordcard__example-en {
+  font-size: var(--size-body-sm);
+  color: var(--text-faint);
+}
+
+/* ── Add from text (item 02a) — pasted reading rendered as tap targets, one
+   button per word, so tapping runs it through the same lookup pipeline as
+   typing it into Capture. ── */
+.readtext {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-body);
+  margin: 0;
+}
+.readtext__word {
+  background: none;
+  border: none;
+  padding: 1px 3px;
+  margin: -1px -3px;
+  border-radius: 5px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--motion-base) var(--ease-standard);
+}
+.readtext__word:active {
+  background: var(--surface-tint);
+}
+.readtext__word--active {
+  background: var(--line-blue-soft);
+  color: var(--primary);
+  font-weight: 600;
+}
+.readtext__word--added {
+  color: var(--success-solid);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+/* ── SenseCard — one of several meanings offered at capture time (item 01b:
+   a word like "aanslag" silently resolved to one gloss — "attack" — when a
+   municipal letter meant "tax assessment", with no sign a second meaning
+   existed). Visually a compact WordCard: same surface and shadow, smaller
+   type, its own Add button so choosing one is a single tap rather than a
+   select-then-confirm step. ── */
+.sense-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.sensecard {
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-card);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sensecard__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sensecard__word {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--text-display);
+}
+.sensecard__tag {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: var(--surface-tint);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.sensecard__gloss {
+  font-size: 16px;
+  color: var(--primary);
+}
+.sensecard__example {
+  margin-top: 2px;
+}
+.sensecard__example-en {
+  font-size: var(--size-body-sm);
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+.sensecard__btn {
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+/* ── Add-a-word flow states (Figma 252:3612) ── */
+.addword__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.addword__block + .addword__block {
+  margin-top: var(--space-4);
+}
+/* State 2 — full-width choices, sized to share the row evenly. */
+.suggestion-row {
+  display: flex;
+  gap: var(--space-4);
+}
+.suggestion-row .btn {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 8px;
+}
+/* State 3b — the same words, offered more quietly beneath a "not found". */
+.suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Grade feedback toast — transient "Next review in N days" after answering.
+   Removed by a JS timer; the animation is only the visual fade. */
+.grade-toast {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 118px;
+  z-index: 5;
+  pointer-events: none;
+  white-space: nowrap;
+  background: var(--ink-900);
+  color: var(--cream-050);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 15px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-card);
+  animation: grade-toast-in var(--motion-base) var(--ease-standard);
+}
+@keyframes grade-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Tricky (leech) tag — a word missed 4+ times; prioritized in sessions. */
+.tricky-tag {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--semantic-warning-warning-default);
+  border: 1px solid var(--semantic-warning-outline-default);
+  color: var(--semantic-warning-onwarning-default);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Spelling suggestions */
+.suggestion-chip {
+  border: 1px solid var(--line-blue-soft);
+  background: var(--surface-card);
+  color: var(--primary);
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  padding: 8px 14px;
+  border-radius: 11px;
+  transition: background var(--motion-base) var(--ease-standard);
+}
+.suggestion-chip:active {
+  background: var(--surface-tint);
+}
+
+/* (Add / remove buttons are now the unified .icon-btn component above.) */
+
+/* ── Flashcard ── */
+.flashcard {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px; /* depth for the 3D flip */
+}
+/* Rotating container: both faces are stacked (grid) and share the cell, so the
+   card sizes to the taller face and the two faces flip together. */
+.flashcard__inner {
+  display: grid;
+  width: 100%;
+  max-width: 300px;
+  transform-style: preserve-3d;
+  transition: transform var(--motion-flip) var(--ease-emphasized);
+}
+.flashcard__inner.is-flipped {
+  transform: rotateY(180deg);
+}
+.flashcard__face {
+  grid-area: 1 / 1; /* stack both faces in the same cell */
+  width: 100%;
+  min-height: 360px;
+  box-sizing: border-box;
+  background: var(--surface-card);
+  border: 1px solid var(--border-cool);
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 28px;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flashcard__face--back {
+  background: var(--surface-tint);
+  border-color: var(--primary-border);
+  transform: rotateY(180deg); /* pre-rotated so it reads correctly when flipped */
+}
+.flashcard__word {
+  font-family: var(--font-serif);
+  font-size: var(--size-word-hero);
+  font-weight: 600;
+  color: var(--text-display);
+  line-height: 1.1;
+}
+.flashcard__example {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--size-body);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.flashcard__hint {
+  color: var(--text-faint);
+  font-size: var(--size-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.flashcard__met-in {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.flashcard__met-in-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Divider component (60×1 rule, blue/200) */
+.divider-rule {
+  width: 60px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--blue-200);
+}
+
+/* ── Misc helpers ── */
+.center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.spread {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.divider {
+  height: 1px;
+  background: var(--line-divider);
+}
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 0;
+}
+
+/* ── Motion & micro-interactions ──
+   Subtle, fast, Material-inspired. Lives close to the interactive elements so
+   intent is obvious. All of it is disabled under prefers-reduced-motion below. */
+.tab {
+  transition: color var(--motion-base) var(--ease-standard);
+}
+.tab:active {
+  transform: translateY(1px);
+}
+
+.wordrow {
+  transition:
+    background var(--motion-base) var(--ease-standard),
+    border-color var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard);
+}
+.wordrow:hover {
+  background: var(--bg-canvas);
+  border-color: var(--line-cool-strong);
+}
+
+/* Visible keyboard focus rings (no effect on mouse/touch). */
+.icon-btn:focus-visible,
+.tab:focus-visible,
+.flashcard:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-100);
+  border-radius: var(--radius-input);
+}
+
+/* Respect users who prefer reduced motion: keep the app static. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .btn:hover,
+  .btn:active,
+  .icon-btn:active,
+  .tab:active {
+    transform: none !important;
+  }
+}

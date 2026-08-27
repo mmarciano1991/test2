@@ -1,0 +1,122 @@
+<style>
+  .sw{width:106px;}
+  .sw__chip{height:60px;border-radius:10px;border:1px solid rgba(15,43,84,.10);}
+  .mini{display:flex;align-items:center;gap:10px;}
+  .mini__chip{width:34px;height:34px;flex-shrink:0;border-radius:8px;border:1px solid rgba(15,43,84,.10);}
+  .role{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-divider);}
+  .role__chip{width:22px;height:22px;flex-shrink:0;border-radius:6px;border:1px solid rgba(15,43,84,.12);}
+  .role__name{font-size:12.5px;font-weight:700;color:var(--text-body);min-width:132px;}
+  .role__to{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--text-faint);}
+</style>
+
+<div class="sheet">
+  <p class="sheet__eyebrow">Foundations</p>
+  <h1 class="sheet__title">Colour — Delft Blue</h1>
+  <p class="sheet__lede">Two families do the work: a Delft blue ramp for everything structural, and a warm cream ramp for surfaces. Blues are cool and saturated, creams are barely tinted — the contrast between them is what makes the app read as porcelain rather than as a generic light theme. Primitives are never used directly in components; every component reads a role token from the bottom of this sheet.</p>
+
+  <div class="grp">
+    <div class="grp__name">Blue — structure, emphasis, every interactive affordance</div>
+    <div class="row">
+      <div class="tile sw"><div class="sw__chip" style="background:#0f2b54"></div><div class="caption">blue-900</div><div class="spec">#0f2b54</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#1b4079"></div><div class="caption">blue-700</div><div class="spec">#1b4079</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#2e5ea8"></div><div class="caption">blue-500</div><div class="spec">#2e5ea8</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#6e92c4"></div><div class="caption">blue-300</div><div class="spec">#6e92c4</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#9db6d8"></div><div class="caption">blue-200</div><div class="spec">#9db6d8</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#dce4f1"></div><div class="caption">blue-100</div><div class="spec">#dce4f1</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#eef3fa"></div><div class="caption">blue-050</div><div class="spec">#eef3fa</div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Cream — surfaces, the canvas the app sits on</div>
+    <div class="row">
+      <div class="tile sw"><div class="sw__chip" style="background:#ffffff"></div><div class="caption">cream-000</div><div class="spec">#ffffff</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#fbf8f1"></div><div class="caption">cream-050</div><div class="spec">#fbf8f1</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#f0ece1"></div><div class="caption">cream-100</div><div class="spec">#f0ece1</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#ede8db"></div><div class="caption">cream-200</div><div class="spec">#ede8db</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#e6e3d8"></div><div class="caption">cream-300</div><div class="spec">#e6e3d8</div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Ink — text, in four weights of presence</div>
+    <div class="row">
+      <div class="tile sw"><div class="sw__chip" style="background:#1b2638"></div><div class="caption">ink-900</div><div class="spec">#1b2638</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#34405a"></div><div class="caption">ink-quote</div><div class="spec">#34405a</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#6b7689"></div><div class="caption">ink-500</div><div class="spec">#6b7689</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#a9b0be"></div><div class="caption">ink-300</div><div class="spec">#a9b0be</div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Lines — hairlines, each tuned to what it separates</div>
+    <div class="row">
+      <div class="tile sw"><div class="sw__chip" style="background:#d7deea"></div><div class="caption">line-cool-strong</div><div class="spec">#d7deea</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#e4e9f2"></div><div class="caption">line-cool</div><div class="spec">#e4e9f2</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#c9d3e5"></div><div class="caption">line-blue-soft</div><div class="spec">#c9d3e5</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#e2ddcf"></div><div class="caption">line-warm</div><div class="spec">#e2ddcf</div></div>
+      <div class="tile sw"><div class="sw__chip" style="background:#eef0f4"></div><div class="caption">line-divider</div><div class="spec">#eef0f4</div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Status — each tone carries a foreground, a solid, a wash and a border</div>
+    <p class="grp__note">Four parts per tone, so a notice, a badge and a solid button can all be built from the same family without picking colours by hand. Success doubles as the mastery scale's mature tier; caution as its learning tier.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px">
+      <div>
+        <div class="caption" style="margin-bottom:11px;color:var(--success-fg)">Success</div>
+        <div class="stack" style="gap:10px">
+          <div class="mini"><div class="mini__chip" style="background:#2e5e40"></div><div><div class="caption">success-fg</div><div class="spec">#2e5e40</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#3e7a57"></div><div><div class="caption">success-solid</div><div class="spec">#3e7a57</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#e7f0ea"></div><div><div class="caption">success-bg</div><div class="spec">#e7f0ea</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#c2dbcb"></div><div><div class="caption">success-border</div><div class="spec">#c2dbcb</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="caption" style="margin-bottom:11px;color:var(--caution-fg)">Caution</div>
+        <div class="stack" style="gap:10px">
+          <div class="mini"><div class="mini__chip" style="background:#8a6a1e"></div><div><div class="caption">caution-fg</div><div class="spec">#8a6a1e</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#c99a2e"></div><div><div class="caption">caution-solid</div><div class="spec">#c99a2e</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#fbf1dd"></div><div><div class="caption">caution-bg</div><div class="spec">#fbf1dd</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#e9d5a6"></div><div><div class="caption">caution-border</div><div class="spec">#e9d5a6</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="caption" style="margin-bottom:11px;color:var(--error-fg)">Error</div>
+        <div class="stack" style="gap:10px">
+          <div class="mini"><div class="mini__chip" style="background:#9a3b22"></div><div><div class="caption">error-fg</div><div class="spec">#9a3b22</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#b5462f"></div><div><div class="caption">error-solid</div><div class="spec">#b5462f</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#f7e8e2"></div><div><div class="caption">error-bg</div><div class="spec">#f7e8e2</div></div></div>
+          <div class="mini"><div class="mini__chip" style="background:#e7c6b8"></div><div><div class="caption">error-border</div><div class="spec">#e7c6b8</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="grp__name">Roles — what components actually read</div>
+    <p class="grp__note">A component never names a primitive. It names the job, and the job points at a primitive here — so retinting the app is an edit to this list, not a search across the codebase.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px">
+      <div>
+        <div class="role"><span class="role__chip" style="background:#1b4079"></span><span class="role__name">primary</span><span class="role__to">→ blue-700</span></div>
+        <div class="role"><span class="role__chip" style="background:#0f2b54"></span><span class="role__name">primary-press</span><span class="role__to">→ blue-900</span></div>
+        <div class="role"><span class="role__chip" style="background:#fbf8f1"></span><span class="role__name">on-primary</span><span class="role__to">→ cream-050</span></div>
+        <div class="role"><span class="role__chip" style="background:#9db6d8"></span><span class="role__name">primary-border</span><span class="role__to">→ blue-200</span></div>
+        <div class="role"><span class="role__chip" style="background:#fbf8f1"></span><span class="role__name">bg-canvas</span><span class="role__to">→ cream-050</span></div>
+        <div class="role"><span class="role__chip" style="background:#e6e3d8"></span><span class="role__name">bg-canvas-deep</span><span class="role__to">→ cream-300</span></div>
+        <div class="role"><span class="role__chip" style="background:#ffffff"></span><span class="role__name">surface-card</span><span class="role__to">→ cream-000</span></div>
+        <div class="role"><span class="role__chip" style="background:#eef3fa"></span><span class="role__name">surface-tint</span><span class="role__to">→ blue-050</span></div>
+      </div>
+      <div>
+        <div class="role"><span class="role__chip" style="background:#0f2b54"></span><span class="role__name">text-display</span><span class="role__to">→ blue-900</span></div>
+        <div class="role"><span class="role__chip" style="background:#1b2638"></span><span class="role__name">text-body</span><span class="role__to">→ ink-900</span></div>
+        <div class="role"><span class="role__chip" style="background:#34405a"></span><span class="role__name">text-muted</span><span class="role__to">→ ink-quote</span></div>
+        <div class="role"><span class="role__chip" style="background:#6b7689"></span><span class="role__name">text-faint</span><span class="role__to">→ ink-500</span></div>
+        <div class="role"><span class="role__chip" style="background:#ede8db"></span><span class="role__name">border-warm</span><span class="role__to">→ cream-200</span></div>
+        <div class="role"><span class="role__chip" style="background:#e4e9f2"></span><span class="role__name">border-cool</span><span class="role__to">→ line-cool</span></div>
+        <div class="role"><span class="role__chip" style="background:#a9b0be"></span><span class="role__name">inactive</span><span class="role__to">→ ink-300</span></div>
+        <div class="role" style="border-bottom:none"><span class="role__chip" style="background:linear-gradient(90deg,#5a6b86 33%,#c99a2e 33% 66%,#3e7a57 66%)"></span><span class="role__name">mastery ramp</span><span class="role__to">new → learning → mature</span></div>
+      </div>
+    </div>
+  </div>
+</div>

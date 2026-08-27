@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap');
+:root{
+--blue-900:#0f2b54;--blue-700:#1b4079;--blue-500:#2e5ea8;--blue-300:#6e92c4;--blue-200:#9db6d8;--blue-100:#dce4f1;--blue-050:#eef3fa;
+--cream-000:#ffffff;--cream-050:#fbf8f1;--cream-100:#f0ece1;--cream-200:#ede8db;--cream-300:#e6e3d8;
+--line-cool:#e4e9f2;--line-cool-strong:#d7deea;--line-blue-soft:#c9d3e5;--line-warm:#e2ddcf;--line-divider:#eef0f4;
+--ink-900:#1b2638;--ink-500:#6b7689;--ink-300:#a9b0be;--ink-quote:#34405a;--ink-hint:#a9b2c2;
+--success-fg:#2e5e40;--success-solid:#3e7a57;--success-bg:#e7f0ea;--success-border:#c2dbcb;
+--caution-fg:#8a6a1e;--caution-solid:#c99a2e;--caution-bg:#fbf1dd;--caution-border:#e9d5a6;
+--error-fg:#9a3b22;--error-solid:#b5462f;--error-bg:#f7e8e2;--error-border:#e7c6b8;
+--bg-canvas:var(--cream-050);--bg-canvas-deep:var(--cream-300);--surface-card:var(--cream-000);--surface-tint:var(--blue-050);
+--primary:var(--blue-700);--primary-press:var(--blue-900);--on-primary:var(--cream-050);
+--text-display:var(--blue-900);--text-body:var(--ink-900);--text-muted:var(--ink-quote);--text-faint:var(--ink-500);
+--border-warm:var(--cream-200);--border-cool:var(--line-cool);--inactive:var(--ink-300);--primary-border:var(--blue-200);
+--font-serif:'Spectral',Georgia,'Times New Roman',serif;--font-sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+--shadow-card:0 8px 22px rgba(15,43,84,.07);--shadow-card-sm:0 1px 2px rgba(15,43,84,.04);--shadow-float:0 16px 40px rgba(15,43,84,.13);
+--shadow-primary:0 8px 20px rgba(27,64,121,.28);--shadow-pressed:0 2px 6px rgba(27,64,121,.28);--shadow-fab:0 12px 26px rgba(27,64,121,.36);
+--shadow-success:0 8px 18px rgba(62,122,87,.26);--shadow-field:0 2px 9px rgba(15,43,84,.05);
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:22px;--space-6:26px;--space-7:34px;
+--radius-chip:9px;--radius-input:14px;--radius-button:16px;--radius-card:20px;--radius-card-lg:24px;--radius-fab:19px;--radius-pill:999px;
+--size-word-hero:28px;--size-hero-stat:26px;--size-display:22px;--size-title-serif:20px;--size-word-row:18px;--size-body:16px;--size-body-sm:14px;--size-label:12px;
+--tracking-label:.12em;--tracking-wordmark:.18em;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;font-family:var(--font-sans);color:var(--text-body);background:var(--bg-canvas);-webkit-font-smoothing:antialiased;}
+a{color:var(--primary);text-underline-offset:2px;}a:hover{color:var(--primary-press);}
+button{font-family:inherit;cursor:pointer;}
+/* ── sheet chrome (documentation only, not part of the app) ── */
+.sheet{padding:34px 34px 40px;}
+.sheet__eyebrow{font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin:0 0 6px;}
+.sheet__title{font-family:var(--font-serif);font-size:27px;font-weight:600;color:var(--text-display);letter-spacing:-.01em;margin:0;}
+.sheet__lede{font-size:14px;line-height:1.55;color:var(--text-faint);margin:8px 0 0;max-width:62ch;}
+.grp{margin-top:30px;}
+.grp__name{font-family:var(--font-sans);font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--text-faint);margin:0 0 12px;padding-bottom:7px;border-bottom:1px solid var(--border-cool);}
+.grp__note{font-size:12.5px;line-height:1.5;color:var(--text-faint);margin:0 0 14px;max-width:70ch;}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;}
+.stack{display:flex;flex-direction:column;gap:14px;}
+.spec{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;color:var(--text-faint);letter-spacing:.01em;}
+.caption{font-size:11.5px;font-weight:700;color:var(--text-body);}
+.tile{display:flex;flex-direction:column;gap:5px;}
